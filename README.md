@@ -6,7 +6,7 @@
 ### Team Information:
 
 - Team Name: Triple Threat
-- Students on team: Steve Deibert, Will G, Manny Uzoma
+- Students on team: Steve Deibert, Will Garlington, Manny Uzoma
 - Semester: Spring 2024
 
 
