@@ -1,12 +1,10 @@
-package edu.gonzaga;
-
-import static org.junit.jupiter.api.Assertions.*;
+package chutesandladders;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class MainGameTest {
+public class ChutesAndLaddersTest {
     @Test
     void alwaysTrue() {
         Assertions.assertTrue(true);
