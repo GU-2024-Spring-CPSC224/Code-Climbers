@@ -8,17 +8,17 @@ import java.awt.Graphics;
 
 public class GameBoard extends JPanel {
     // Define board dimensions, chutes, ladders, etc.
-
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         // Draw the game board using Swing graphics
     }
-
+    
     public void movePlayer(Player player, int steps) {
         // Update player position based on steps
     }
-
+    
     public boolean checkChuteOrLadder(int position) {
         // Check if the current position has a chute or ladder
         return false;
