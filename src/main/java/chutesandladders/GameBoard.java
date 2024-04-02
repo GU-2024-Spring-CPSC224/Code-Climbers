@@ -2,10 +2,6 @@ package chutesandladders;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 
-//    Purpose: Represent the game board.
-//    Implement a Swing JPanel to draw the game board with squares representing the chutes and ladders.
-//    Define methods to move players and check for chute or ladder encounters.
-
 public class GameBoard extends JPanel {
     // Define board dimensions, chutes, ladders, etc.
     
@@ -15,13 +11,24 @@ public class GameBoard extends JPanel {
         // Draw the game board using Swing graphics
     }
     
+    /**
+     * Moves the player on the board.
+     *
+     * @param player The player to move.
+     * @param steps  Number of steps to move.
+     */
     public void movePlayer(Player player, int steps) {
         // Update player position based on steps
     }
     
+    /**
+     * Checks if the current position has a chute or ladder.
+     *
+     * @param position The current position of the player.
+     * @return True if there is a chute or ladder, false otherwise.
+     */
     public boolean checkChuteOrLadder(int position) {
         // Check if the current position has a chute or ladder
         return false;
     }
 }
-
