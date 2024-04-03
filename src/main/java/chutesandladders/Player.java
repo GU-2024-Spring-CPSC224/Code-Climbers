@@ -1,7 +1,9 @@
 package chutesandladders;
 public class Player {
     private String name;
+    private int score;
     private int currentPosition;
+    private static int playercount;
     
     /**
      * Initializes a new player with the given name.
@@ -9,8 +11,13 @@ public class Player {
      * @param name The name of the player.
      */
     public Player(String name) {
+        playercount += 1;
+        if (name.isEmpty()) {
+            name = "Player" + playercount;
+        }
         this.name = name;
         this.currentPosition = 0;
+        this.score = 0;
     }
     
     /**
@@ -18,8 +25,10 @@ public class Player {
      *
      * @param steps The number of steps to move.
      */
-    public void move(int steps) {
+    public int move(int steps) {
         // Update currentPosition based on steps
+        this.currentPosition += steps;
+        return this.currentPosition;
     }
     
     // Getter and Setter methods
