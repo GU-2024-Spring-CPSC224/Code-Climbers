@@ -5,14 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e929309-7e1b-43c0-9976-3bb115900e5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/chutesandladders/ChutesAndLadders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chutesandladders/ChutesAndLadders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chutesandladders/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chutesandladders/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chutesandladders/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chutesandladders/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project design documents/Diagrams/Chute-Ladder Check-0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project design documents/Diagrams/Chute-Ladder Check.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project design documents/Diagrams/Game Flow-0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project design documents/Diagrams/Game Flow.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project design documents/Diagrams/Player Move-0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project design documents/Diagrams/Player Move.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="UML Sequence" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -20,23 +31,34 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2eWBNVxN548zgEr6euyUJfvBcUu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultPlantUmlFileTemplate": "UML Sequence",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Steve/Documents/GitHub/Code-Climbers/project design documents/Diagrams"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Steve\Documents\GitHub\Code-Climbers\project design documents\Diagrams" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -54,7 +76,11 @@
       <option name="presentableId" value="Default" />
       <updated>1712010413584</updated>
       <workItem from="1712010414769" duration="1376000" />
+      <workItem from="1712206751965" duration="1067000" />
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
