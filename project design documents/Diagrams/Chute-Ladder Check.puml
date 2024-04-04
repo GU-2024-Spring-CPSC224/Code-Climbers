@@ -1,0 +1,10 @@
+@startuml
+participant "ChutesAndLadders" as Game
+participant "GameBoard" as Board
+participant "Player" as Player
+
+Game -> Board: Create GameBoard instance
+Game -> Player: Create Player instance
+Game -> Board: Call checkChuteOrLadder(position)
+Board -> Player: Check currentPosition
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+participant "ChutesAndLadders" as Game
+participant "GameBoard" as Board
+participant "Player" as Player1
+participant "Player" as Player2
+
+Game -> Board: Create GameBoard instance
+Game -> Player1: Create Player 1 instance
+Game -> Player2: Create Player 2 instance
+
+Game -> Board: Player 1 move (movePlayer)
+Board -> Player1: Update currentPosition
+
+Game -> Board: Player 2 move (movePlayer)
+Board -> Player2: Update currentPosition
+
+Game -> Board: Check for chutes/ladders (checkChuteOrLadder)
+Board -> Player1: Check currentPosition
+Board -> Player2: Check currentPosition
+@enduml
