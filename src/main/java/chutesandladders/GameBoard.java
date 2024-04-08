@@ -33,18 +33,16 @@ public class GameBoard extends JPanel {
         // handle moving the piece or dealing with what happens when the player lands where they do
     }
     
-    /**
-     * Checks if the current position has a chute or ladder.
-     *
-     * @param position The current position of the player.
-     * @return True if there is a chute or ladder, false otherwise.
-     */
-    public boolean checkChuteOrLadder(int position) {
-        // Check if the current position has a chute or ladder
-	    checkForLadder(playerposition);
-		checkForChute(playerposition);
-        return false;
-    }
+	/**
+	 * Checks if the current position has a chute or ladder.
+	 *
+	 * @param position The current position of the player.
+	 */
+	public void checkChuteOrLadder(int position) {
+		if (!checkForLadder(position)) {
+			checkForChute(position);
+		}
+	}
 	
 	private boolean checkForLadder(int position) {
 		if (ladders.containsKey(position)) {
