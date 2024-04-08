@@ -21,18 +21,18 @@ public class GameBoard extends JPanel {
         // Draw the game board using Swing graphics
     }
     
-    /**
-     * Moves the player on the board.
-     *
-     * @param player The player to move.
-     * @param steps  Number of steps to move.
-     */
-    public void movePlayer(Player player, int steps) {
-        // Update player position based on steps
-	    playerposition = player.move(steps);
-        // handle moving the piece or dealing with what happens when the player lands where they do
-    }
-    
+	/**
+	 * Moves the player on the board.
+	 *
+	 * @param player The player to move.
+	 * @param steps  Number of steps to move.
+	 */
+	public void movePlayer(Player player, int steps) {
+		playerposition = player.move(steps);  // Assuming the Player class has a move method
+		checkChuteOrLadder(playerposition);  // Check for chutes or ladders after moving
+	}
+	
+	
 	/**
 	 * Checks if the current position has a chute or ladder.
 	 *
