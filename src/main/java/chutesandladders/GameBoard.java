@@ -1,6 +1,6 @@
 package chutesandladders;
 import javax.swing.JPanel;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.HashMap;
 
 
@@ -15,12 +15,40 @@ public class GameBoard extends JPanel {
 	
 	int playerposition;
 	
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Draw the game board using Swing graphics
-    }
-    
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		// Draw the game board using Swing graphics
+		
+		// Draw chutes
+		g.setColor(Color.RED);
+		paintChutesAndLadders(g, chutes);
+		
+		// Draw ladders
+		g.setColor(Color.GREEN);
+		paintChutesAndLadders(g, ladders);
+	}
+	
+	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
+		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
+			int startX = getXPosition(entry.getKey());
+			int startY = getYPosition(entry.getKey());
+			int endX = getXPosition(entry.getValue());
+			int endY = getYPosition(entry.getValue());
+			g.drawLine(startX, startY, endX, endY);
+		}
+	}
+	
+	private int getXPosition(int position) {
+		return (position % 10) * 50;  // Assuming each square is 50 pixels wide
+	}
+	
+	private int getYPosition(int position) {
+		return 500 - (position / 10) * 50;  // Assuming each square is 50 pixels high
+	}
+	
+	
 	/**
 	 * Moves the player on the board.
 	 *
