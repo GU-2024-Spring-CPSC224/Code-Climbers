@@ -3,12 +3,16 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.util.HashMap;
 
+
 public class GameBoard extends JPanel {
-    // Define board dimensions, chutes, ladders, etc.
+	// Define board dimensions, chutes, ladders, etc.
+	
 	// Hashmap for ladders, key, value int pair of start, end
 	HashMap<Integer, Integer> ladders;
+	
 	// Hashmap for chutes, key, value int pair of start, end
 	HashMap<Integer, Integer> chutes;
+	
 	int playerposition;
 	
     @Override
@@ -43,11 +47,16 @@ public class GameBoard extends JPanel {
     }
 	
 	private boolean checkForLadder(int position) {
-		// check position for chute using ladder hashmap
-		return true;
+		if (ladders.containsKey(position)) {
+			playerposition = ladders.get(position);  // Update player position to ladder end
+			return true;
+		}
+		return false;
 	}
-	private boolean checkForChute(int position) {
-		// check position for chute using chute hashmap
-		return true;
+	
+	private void checkForChute(int position) {
+		if (chutes.containsKey(position)) {
+			playerposition = chutes.get(position);  // Update player position to chute end
+		}
 	}
 }
