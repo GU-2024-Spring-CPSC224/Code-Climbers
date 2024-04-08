@@ -1,9 +1,12 @@
 package chutesandladders;
+
+
 public class Player {
     private String name;
     private int score;
     private int currentPosition;
     private static int playercount;
+    private Die myDie;
     
     /**
      * Initializes a new player with the given name.
@@ -15,6 +18,7 @@ public class Player {
         if (name.isEmpty()) {
             name = "Player" + playercount;
         }
+        myDie = new Die(6, 6);
         this.name = name;
         this.currentPosition = 0;
         this.score = 0;
@@ -32,10 +36,11 @@ public class Player {
     }
 
     public Integer takeTurn() {
-        //to take turn
+        Integer steps = 0;
         //roll dice
-        //measure steps needed for and pass back "steps"
-        return 0;
+        myDie.roll();
+        steps = myDie.getSideUp();
+        return steps;
     }
     
     // Getter and Setter methods
