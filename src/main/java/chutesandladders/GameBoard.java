@@ -2,6 +2,7 @@ package chutesandladders;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.Random;
 
 
 public class GameBoard extends JPanel {
@@ -14,6 +15,30 @@ public class GameBoard extends JPanel {
 	HashMap<Integer, Integer> chutes;
 	
 	int playerposition;
+	
+	public GameBoard() {
+		this.chutes = new HashMap<>();
+		this.ladders = new HashMap<>();
+		generateChutesAndLadders();
+	}
+	
+	private void generateChutesAndLadders() {
+		Random random = new Random();
+		
+		// Generate 5 chutes
+		for (int i = 0; i < 5; i++) {
+			int start = random.nextInt(98) + 1;
+			int end = start - (random.nextInt(5) + 1) * 10;  // End is 5 to 15 steps below start
+			chutes.put(start, end);
+		}
+		
+		// Generate 5 ladders
+		for (int i = 0; i < 5; i++) {
+			int start = random.nextInt(80) + 1;
+			int end = start + (random.nextInt(20) + 10);  // End is 10 to 30 steps above start
+			ladders.put(start, end);
+		}
+	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
