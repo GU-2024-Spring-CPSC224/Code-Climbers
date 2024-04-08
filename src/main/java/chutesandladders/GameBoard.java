@@ -16,13 +16,6 @@ public class GameBoard extends JPanel {
         super.paintComponent(g);
         // Draw the game board using Swing graphics
     }
-
-    public Integer takeTurn() {
-        //to take turn
-        //roll dice
-        //measure steps needed for and pass back "steps"
-        return 0;
-    }
     
     /**
      * Moves the player on the board.

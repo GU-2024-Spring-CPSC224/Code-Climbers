@@ -30,6 +30,13 @@ public class Player {
         this.currentPosition += steps;
         return this.currentPosition;
     }
+
+    public Integer takeTurn() {
+        //to take turn
+        //roll dice
+        //measure steps needed for and pass back "steps"
+        return 0;
+    }
     
     // Getter and Setter methods
     
