@@ -41,6 +41,11 @@ public class GameBoard extends JPanel {
 	}
 	
 	@Override
+    public Dimension getPreferredSize() {
+        return new Dimension(600, 600);  // Set preferred size of the panel
+    }
+	
+	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
