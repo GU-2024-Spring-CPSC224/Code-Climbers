@@ -1,3 +1,12 @@
+/**
+ * GameBoard class used to play the game "Code Climbers" (Chutes & Ladders")
+ * CPSC 224, Spring 2024
+ * Final Project
+ * Sources: N/A
+ * 
+ * @author William Garlington, Steve Deibert, Manny Uzoma
+ * @version 1.0
+ */
 package chutesandladders;
 import javax.swing.JPanel;
 import java.awt.Graphics;
