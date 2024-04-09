@@ -27,7 +27,7 @@ public class ChutesAndLadders {
 		// Example function calls to demonstrate dependencies
 		board.movePlayer(player1, 3);
 		board.movePlayer(player2, 4);
-		
+
 		// Check for chutes or ladders after moving players
 		int position1 = player1.getCurrentPosition();
 		int position2 = player2.getCurrentPosition();
