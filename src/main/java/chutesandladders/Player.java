@@ -15,6 +15,7 @@ public class Player {
     private int currentPosition;
     private static int playercount;
     private Integer playerID;
+    private Die myDie;
     
     /**
      * Initializes a new player with the given name.
@@ -26,6 +27,7 @@ public class Player {
         if (name.isEmpty()) {
             name = "Player" + playercount;
         }
+        myDie = new Die(6, 6);
         this.name = name;
         this.currentPosition = 0;
         this.score = 0;
@@ -41,6 +43,14 @@ public class Player {
         // Update currentPosition based on steps
         this.currentPosition += steps;
         return this.currentPosition;
+    }
+
+    public Integer takeTurn() {
+        Integer steps = 0;
+        //roll dice
+        myDie.roll();
+        steps = myDie.getSideUp();
+        return steps;
     }
     
     // Getter and Setter methods
