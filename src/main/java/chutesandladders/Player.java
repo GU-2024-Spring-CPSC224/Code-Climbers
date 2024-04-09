@@ -14,6 +14,7 @@ public class Player {
     private int score;
     private int currentPosition;
     private static int playercount;
+    private Integer playerID;
     
     /**
      * Initializes a new player with the given name.
@@ -28,6 +29,7 @@ public class Player {
         this.name = name;
         this.currentPosition = 0;
         this.score = 0;
+        playerID = playercount;
     }
     
     /**
@@ -42,6 +44,23 @@ public class Player {
     }
     
     // Getter and Setter methods
+
+    //get name
+    public String getPlayerName() {
+        return name;
+    }
+
+    public void setPlayerName(String input) {
+        name = input;
+        return;
+    }
+
+    //get ID
+    public Integer getPlayerID() {
+        return playerID;
+    }
+
+
     
     /**
      * Gets the current position of the player on the board.
