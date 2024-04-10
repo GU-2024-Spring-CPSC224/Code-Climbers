@@ -12,7 +12,7 @@ package chutesandladders;
 public class Player {
     private String name;
     private int score;
-    private int currentPosition;
+	private int currentPosition;
     private static int playercount;
     private Integer playerID;
     private Die myDie;
