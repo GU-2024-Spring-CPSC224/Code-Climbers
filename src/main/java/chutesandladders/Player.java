@@ -11,7 +11,6 @@ package chutesandladders;
 
 public class Player {
     private String name;
-    private int score;
 	private int currentPosition;
     private static int playercount;
     private Integer playerID;
@@ -30,7 +29,6 @@ public class Player {
         myDie = new Die(6, 6);
         this.name = name;
         this.currentPosition = 0;
-        this.score = 0;
         playerID = playercount;
     }
     
