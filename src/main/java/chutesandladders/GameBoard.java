@@ -8,8 +8,6 @@
  * @version 1.0
  */
 package chutesandladders;
-import javax.swing.JPanel;
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -29,6 +27,7 @@ public class GameBoard {
 		chutes = new HashMap<>();
 		ladders = new HashMap<>();
 		generateChutesAndLadders();
+		playerposition = 0;
 	}
 	
 	private void generateChutesAndLadders() {
