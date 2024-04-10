@@ -1,0 +1,62 @@
+/**
+ * Interface class used to play the game "Code Climbers" (Chutes & Ladders")
+ * CPSC 224, Spring 2024
+ * Final Project
+ * Sources: N/A
+ * 
+ * @author William Garlington, Steve Deibert, Manny Uzoma
+ * @version 1.0
+ */
+package chutesandladders;
+
+import javax.swing.JPanel;
+import java.awt.*;
+import java.util.HashMap;
+
+
+
+public class Interface {
+    GameBoard board;
+    
+    public Interface(GameBoard inputBoard) {
+        this.board = inputBoard;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(600, 600);  // Set preferred size of the panel
+    }
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		// Draw the game board using Swing graphics
+		
+		// Draw chutes
+		g.setColor(Color.RED);
+		paintChutesAndLadders(g, board.chutes);
+		
+		// Draw ladders
+		g.setColor(Color.GREEN);
+		paintChutesAndLadders(g, board.ladders);
+	}
+	
+	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
+		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
+			int startX = getXPosition(entry.getKey());
+			int startY = getYPosition(entry.getKey());
+			int endX = getXPosition(entry.getValue());
+			int endY = getYPosition(entry.getValue());
+			g.drawLine(startX, startY, endX, endY);
+		}
+	}
+
+	private int getXPosition(int position) {
+		return (position % 10) * 50;  // Assuming each square is 50 pixels wide
+	}
+	
+	private int getYPosition(int position) {
+		return 500 - (position / 10) * 50;  // Assuming each square is 50 pixels high
+	}
+}
