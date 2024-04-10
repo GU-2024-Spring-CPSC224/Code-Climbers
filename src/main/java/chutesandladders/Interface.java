@@ -64,7 +64,11 @@ public class Interface extends JPanel {
             x1 += 50;
             x2 += 50;
         }
-        
+		
+		for (int i = 0; i < 100; i++) {
+			int startX = getXPosition(i);
+			int startY = getYPosition(i);
+		}
 
     }
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
