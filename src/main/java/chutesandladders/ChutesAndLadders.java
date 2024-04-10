@@ -19,9 +19,10 @@ public class ChutesAndLadders {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Chutes and Ladders");
 		GameBoard board = new GameBoard();
-		Interface UI = new Interface(board);
 		Player player1 = new Player("Player 1");
 		Player player2 = new Player("Player 2");
+
+		createUI(board);
 		
 		// Add board and other Swing components to frame
 		
@@ -37,6 +38,16 @@ public class ChutesAndLadders {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
+		frame.setVisible(true);
+	}
+
+	private static void createUI(GameBoard board) {
+		Interface UI = new Interface(board);
+		JFrame frame = new JFrame("Chutes and Ladders");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(UI);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 }

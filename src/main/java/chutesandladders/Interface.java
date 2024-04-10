@@ -24,7 +24,7 @@ public class Interface extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(600, 600);  // Set preferred size of the panel
+        return new Dimension(800, 800);  // Set preferred size of the panel
     }
 	
 	@Override
@@ -32,7 +32,8 @@ public class Interface extends JPanel {
 		super.paintComponent(g);
 		
 		// Draw the game board using Swing graphics
-		
+		g.setColor(Color.BLACK);
+        drawTileBox(g);
 		// Draw chutes
 		g.setColor(Color.RED);
 		paintChutesAndLadders(g, board.chutes);
@@ -42,6 +43,13 @@ public class Interface extends JPanel {
 		paintChutesAndLadders(g, board.ladders);
 	}
 	
+    private void drawTileBox(Graphics g) {
+        g.fillRect(10, 10, 500, 500);
+        g.drawLine(10, 10, 510, 10);
+        g.drawLine(10,10, 10, 510);
+        g.drawLine(510, 10, 510, 510);
+        g.drawLine(10,510,510,510);
+    }
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
 			int startX = getXPosition(entry.getKey());
