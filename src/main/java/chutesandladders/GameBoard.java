@@ -14,7 +14,10 @@ import java.util.HashMap;
 import java.util.Random;
 
 
-public class GameBoard extends JPanel {
+public class GameBoard {
+	// Define board dimensions, chutes, ladders, etc.
+    Integer[] boardArray = new Integer[100];
+    ///array of 100 zeros
 	
 	// Hashmap for ladders, key, value int pair of start, end
 	static HashMap<Integer, Integer> ladders;
