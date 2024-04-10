@@ -17,16 +17,16 @@ import java.util.Random;
 public class GameBoard extends JPanel {
 	
 	// Hashmap for ladders, key, value int pair of start, end
-	HashMap<Integer, Integer> ladders;
+	static HashMap<Integer, Integer> ladders;
 	
 	// Hashmap for chutes, key, value int pair of start, end
-	HashMap<Integer, Integer> chutes;
+	static HashMap<Integer, Integer> chutes;
 	
-	int playerposition;
+	static int playerposition;
 	
 	public GameBoard() {
-		this.chutes = new HashMap<>();
-		this.ladders = new HashMap<>();
+		chutes = new HashMap<>();
+		ladders = new HashMap<>();
 		generateChutesAndLadders();
 	}
 	
@@ -94,44 +94,33 @@ public class GameBoard extends JPanel {
 	
 	/// ### PLAYER MOVEMENT FUNCTIONS
 	
-	/**
-	 * Moves the player on the board.
-	 *
-	 * @param player The player to move.
-	 * @param steps  Number of steps to move.
-	 */
-	public void movePlayer(Player player, int steps) {
-		playerposition = player.move(steps);  // Assuming the Player class has a move method
-		//if (checkChuteOrLadder(playerposition))
-		// Check for chutes or ladders after moving
-		//if yes then move player to end point
-		if (checkForChute(playerposition)) {
-			moveOnChute(playerposition);
-		}
-		else if (checkForLadder(playerposition)) {
-			moveOnLadder(playerposition);
+	public static int checkChuteOrLadder(int position) {
+		checkForLadder(position);
+		checkForChute(position);
+		return playerposition;
+	}
+	
+	private static void checkForLadder(int position) {
+		if (ladders.containsKey(position)){
+			playerposition = ladders.get(position);
+			checkChuteOrLadder(playerposition);
 		}
 	}
 	
-	private boolean checkForLadder(int position) {
-		return ladders.containsKey(position);
-	}
-
-	private void moveOnLadder(int position) {
-		playerposition = ladders.get(position);  // Update player position to the ladder end
-	}
-	
-	private boolean checkForChute(int position) {
-		return chutes.containsKey(position);
-	}
-
-	private void moveOnChute(int position) {
-		playerposition = chutes.get(position);  // Update player position to the chute end
+	private static void checkForChute(int position) {
+		if (chutes.containsKey(position)){
+			playerposition = chutes.get(position);
+			checkChuteOrLadder(playerposition);
+		}
 	}
 
 	/// ### GETTERS AND SETTERS
 
 	public int getPlayerPosition() {
 		return playerposition;
+	}
+	
+	public void setPlayerPosition(int position) {
+		playerposition = position;
 	}
 }
