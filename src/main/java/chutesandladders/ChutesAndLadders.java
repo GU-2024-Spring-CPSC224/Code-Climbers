@@ -20,7 +20,10 @@ public class ChutesAndLadders {
 		GameBoard board = new GameBoard();
 		Player player1 = new Player("Player 1");
 		Player player2 = new Player("Player 2");
-
+		
+		System.out.println(board.chutes);
+		System.out.println(board.ladders);
+		
 		createUI(board);
 	}
 
