@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 
 
-public class Interface {
+public class Interface extends JPanel {
     GameBoard board;
     
     public Interface(GameBoard inputBoard) {

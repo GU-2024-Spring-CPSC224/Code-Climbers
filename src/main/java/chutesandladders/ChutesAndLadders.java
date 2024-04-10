@@ -19,6 +19,7 @@ public class ChutesAndLadders {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Chutes and Ladders");
 		GameBoard board = new GameBoard();
+		Interface UI = new Interface(board);
 		Player player1 = new Player("Player 1");
 		Player player2 = new Player("Player 2");
 		
