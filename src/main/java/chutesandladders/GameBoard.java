@@ -99,6 +99,7 @@ public class GameBoard extends JPanel {
 	public void movePlayer(Player player, int steps) {
 		playerposition = player.move(steps);  // Assuming the Player class has a move method
 		checkChuteOrLadder(playerposition);  // Check for chutes or ladders after moving
+		//if yes then move player to end point
 	}
 	
 	
@@ -106,11 +107,13 @@ public class GameBoard extends JPanel {
 	 * Checks if the current position has a chute or ladder.
 	 *
 	 * @param position The current position of the player.
+	 * @return whether or not position is chute/ladder
 	 */
-	public void checkChuteOrLadder(int position) {
+	public boolean checkChuteOrLadder(int position) {
 		if (!checkForLadder(position)) {
 			checkForChute(position);
 		}
+		return false;
 	}
 	
 	private boolean checkForLadder(int position) {
