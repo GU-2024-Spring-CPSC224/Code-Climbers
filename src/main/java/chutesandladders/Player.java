@@ -11,7 +11,7 @@ package chutesandladders;
 
 public class Player {
     private String name;
-	private int currentPosition;
+	public int currentPosition;
     private static int playercount;
     private final Integer playerID;
     private static final Die die = new Die(6, 6);;
@@ -36,10 +36,10 @@ public class Player {
      *
      * @param steps The number of steps to move.
      */
-    public int move(int steps) {
+    public void move(int steps) {
         // Update currentPosition based on steps
         this.currentPosition += steps;
-        return this.currentPosition;
+        currentPosition = GameBoard.checkChuteOrLadder(this.currentPosition);
     }
 
     public void takeTurn() {
