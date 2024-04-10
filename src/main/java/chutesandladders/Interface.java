@@ -45,10 +45,27 @@ public class Interface extends JPanel {
 	
     private void drawTileBox(Graphics g) {
         g.fillRect(10, 10, 500, 500);
-        g.drawLine(10, 10, 510, 10);
-        g.drawLine(10,10, 10, 510);
-        g.drawLine(510, 10, 510, 510);
-        g.drawLine(10,510,510,510);
+        g.setColor(Color.WHITE);
+        int x1 = 10;
+        int y1 = 60;
+        int x2 = 510;
+        int y2 = 60;
+        for (int i = 0; i < 9; i++) {
+            g.drawLine(x1, y1, x2, y2);
+            y1 += 50;
+            y2 += 50;
+        }
+        x1 = 60;
+        x2 = 60;
+        y1 = 10;
+        y2 = 510;
+        for (int i = 0; i < 9; i++) {
+            g.drawLine(x1, y1, x2, y2);
+            x1 += 50;
+            x2 += 50;
+        }
+        
+
     }
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
@@ -61,10 +78,10 @@ public class Interface extends JPanel {
 	}
 
 	private int getXPosition(int position) {
-		return (position % 10) * 50;  // Assuming each square is 50 pixels wide
+		return ((position % 10) * 50) + 35;  // Assuming each square is 50 pixels wide + 35 from the wall and center tile
 	}
 	
 	private int getYPosition(int position) {
-		return 500 - (position / 10) * 50;  // Assuming each square is 50 pixels high
+		return (500 - (position / 10) * 50) + 35;  // Assuming each square is 50 pixels high + 35 for wall and center
 	}
 }
