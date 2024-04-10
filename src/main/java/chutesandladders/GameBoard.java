@@ -13,11 +13,8 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
 
-
+// Define board dimensions, chutes, ladders, etc.
 public class GameBoard {
-	// Define board dimensions, chutes, ladders, etc.
-    Integer[] boardArray = new Integer[100];
-    ///array of 100 zeros
 	
 	// Hashmap for ladders, key, value int pair of start, end
 	static HashMap<Integer, Integer> ladders;
@@ -25,6 +22,7 @@ public class GameBoard {
 	// Hashmap for chutes, key, value int pair of start, end
 	static HashMap<Integer, Integer> chutes;
 	
+	// Stored Player Position used in chute and ladder checks
 	static int playerposition;
 	
 	public GameBoard() {
