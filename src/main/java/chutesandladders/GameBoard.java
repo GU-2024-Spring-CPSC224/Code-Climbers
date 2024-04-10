@@ -122,10 +122,7 @@ public class GameBoard extends JPanel {
 	}
 	
 	private boolean checkForLadder(int position) {
-		if (ladders.containsKey(position)) {
-			return true;
-		}
-		return false;
+		return ladders.containsKey(position);
 	}
 
 	private void moveOnLadder(int position) {
@@ -133,10 +130,7 @@ public class GameBoard extends JPanel {
 	}
 	
 	private boolean checkForChute(int position) {
-		if (chutes.containsKey(position)) {
-			return true;
-		}
-		return false;
+		return chutes.containsKey(position);
 	}
 
 	private void moveOnChute(int position) {
