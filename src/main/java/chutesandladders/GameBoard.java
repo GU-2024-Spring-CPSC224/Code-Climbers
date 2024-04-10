@@ -92,6 +92,7 @@ public class GameBoard extends JPanel {
 		return 500 - (position / 10) * 50;  // Assuming each square is 50 pixels high
 	}
 	
+	/// ### PLAYER MOVEMENT FUNCTIONS
 	
 	/**
 	 * Moves the player on the board.
@@ -110,21 +111,6 @@ public class GameBoard extends JPanel {
 		else if (checkForLadder(playerposition)) {
 			moveOnLadder(playerposition);
 		}
-	}
-	
-	/// ### PPLAYER MOVEMENT FUNCTIONS
-	
-	/**
-	 * Checks if the current position has a chute or ladder.
-	 *
-	 * @param position The current position of the player.
-	 * @return whether position is chute/ladder
-	 */
-	public boolean checkChuteOrLadder(int position) {
-		if (!checkForLadder(position)) {
-			checkForChute(position);
-		}
-		return false;
 	}
 	
 	private boolean checkForLadder(int position) {
