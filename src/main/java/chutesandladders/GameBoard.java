@@ -118,15 +118,23 @@ public class GameBoard extends JPanel {
 	
 	private boolean checkForLadder(int position) {
 		if (ladders.containsKey(position)) {
-			playerposition = ladders.get(position);  // Update player position to ladder end
 			return true;
 		}
 		return false;
 	}
+
+	private void moveOnLadder(int position) {
+		playerposition = ladders.get(position);  // Update player position to ladder end
+	}
 	
-	private void checkForChute(int position) {
+	private boolean checkForChute(int position) {
 		if (chutes.containsKey(position)) {
-			playerposition = chutes.get(position);  // Update player position to chute end
+			return true;
 		}
+		return false;
+	}
+
+	private void moveOnChute(int position) {
+		playerposition = chutes.get(position);  // Update player position to chute end
 	}
 }
