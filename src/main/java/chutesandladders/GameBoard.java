@@ -32,18 +32,24 @@ public class GameBoard extends JPanel {
 	
 	private void generateChutesAndLadders() {
 		Random random = new Random();
-		
-		// Generate 5 chutes
-		for (int i = 0; i < 5; i++) {
-			int start = random.nextInt(98) + 1;
+		int chuteLadderNum = 5;
+		// Generate chutes
+		for (int i = 0; i < chuteLadderNum; i++) {
+			int start = random.nextInt(94) + 6;  // Start from 6 to 99 to ensure space for chutes
 			int end = start - (random.nextInt(5) + 1) * 10;  // End is 5 to 15 steps below start
+			if (end < 1) {
+				end = 1;
+			}
 			chutes.put(start, end);
 		}
-		
-		// Generate 5 ladders
-		for (int i = 0; i < 5; i++) {
-			int start = random.nextInt(80) + 1;
+
+		// Generate ladders
+		for (int i = 0; i < chuteLadderNum; i++) {
+			int start = random.nextInt(90) + 1;  // Start from 1 to 90 to ensure space for ladders
 			int end = start + (random.nextInt(20) + 10);  // End is 10 to 30 steps above start
+			if (end > 100) {
+				end = 100;
+			}
 			ladders.put(start, end);
 		}
 	}
