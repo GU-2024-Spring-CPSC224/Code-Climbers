@@ -18,11 +18,22 @@ import javax.swing.JFrame;
 public class ChutesAndLadders {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Chutes and Ladders");
-		GameBoard board = new GameBoard();
 		Player player1 = new Player("Player 1");
 		Player player2 = new Player("Player 2");
+		GameBoard board = new GameBoard();
+
+		Die die1 = new Die(6, 1);
 		
 		// Add board and other Swing components to frame
+
+		//turn example
+		die1.roll();
+		System.out.println("Currently here: " + board.getPlayerPosition());
+		board.movePlayer(player1, die1.getSideUp());
+		System.out.println("Now here: " + board.getPlayerPosition());
+
+
+
 		
 		// Example function calls to demonstrate dependencies
 		board.movePlayer(player1, 3);
