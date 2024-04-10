@@ -57,14 +57,6 @@ public class GameBoard {
 		}
 	}
 	
-	private int getXPosition(int position) {
-		return (position % 10) * 50;  // Assuming each square is 50 pixels wide
-	}
-	
-	private int getYPosition(int position) {
-		return 500 - (position / 10) * 50;  // Assuming each square is 50 pixels high
-	}
-	
 	/// ### PLAYER MOVEMENT FUNCTIONS
 	
 	public static int checkChuteOrLadder(int position) {
