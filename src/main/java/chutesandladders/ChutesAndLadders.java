@@ -22,8 +22,6 @@ public class ChutesAndLadders {
 		Player player2 = new Player("Player 2");
 
 		createUI(board);
-		
-		player1.takeTurn();
 	}
 
 	private static void createUI(GameBoard board) {
