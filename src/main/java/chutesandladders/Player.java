@@ -13,8 +13,8 @@ public class Player {
     private String name;
 	private int currentPosition;
     private static int playercount;
-    private Integer playerID;
-    private Die myDie;
+    private final Integer playerID;
+    private final Die myDie;
     
     /**
      * Initializes a new player with the given name.
@@ -29,7 +29,7 @@ public class Player {
         myDie = new Die(6, 6);
         this.name = name;
         this.currentPosition = 0;
-        playerID = playercount;
+	    playerID = playercount;
     }
     
     /**
