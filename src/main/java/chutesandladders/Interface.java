@@ -24,7 +24,7 @@ public class Interface extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(800, 800);  // Set preferred size of the panel
+        return new Dimension(800, 800);  // Set the preferred size of the panel
     }
 	
 	@Override
@@ -36,11 +36,11 @@ public class Interface extends JPanel {
         drawTileBox(g);
 		// Draw chutes
 		g.setColor(Color.RED);
-		paintChutesAndLadders(g, board.chutes);
+		paintChutesAndLadders(g, GameBoard.chutes);
 		
 		// Draw ladders
 		g.setColor(Color.GREEN);
-		paintChutesAndLadders(g, board.ladders);
+		paintChutesAndLadders(g, GameBoard.ladders);
 	}
 	
     private void drawTileBox(Graphics g) {
