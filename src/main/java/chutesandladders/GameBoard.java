@@ -50,7 +50,7 @@ public class GameBoard extends JPanel {
 	
 	@Override
     public Dimension getPreferredSize() {
-        return new Dimension(600, 600);  // Set preferred size of the panel
+        return new Dimension(600, 600);  // Set the preferred size of the panel
     }
 	
 	@Override
@@ -112,7 +112,7 @@ public class GameBoard extends JPanel {
 	 * Checks if the current position has a chute or ladder.
 	 *
 	 * @param position The current position of the player.
-	 * @return whether or not position is chute/ladder
+	 * @return whether position is chute/ladder
 	 */
 	public boolean checkChuteOrLadder(int position) {
 		if (!checkForLadder(position)) {
@@ -129,7 +129,7 @@ public class GameBoard extends JPanel {
 	}
 
 	private void moveOnLadder(int position) {
-		playerposition = ladders.get(position);  // Update player position to ladder end
+		playerposition = ladders.get(position);  // Update player position to the ladder end
 	}
 	
 	private boolean checkForChute(int position) {
@@ -140,7 +140,7 @@ public class GameBoard extends JPanel {
 	}
 
 	private void moveOnChute(int position) {
-		playerposition = chutes.get(position);  // Update player position to chute end
+		playerposition = chutes.get(position);  // Update player position to the chute end
 	}
 
 	/// ### GETTERS AND SETTERS
