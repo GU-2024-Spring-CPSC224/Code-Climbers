@@ -16,24 +16,33 @@ import java.util.HashMap;
 
 
 public class Interface extends JPanel {
-    GameBoard board;
-    
-    public Interface(GameBoard inputBoard) {
-        this.board = inputBoard;
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(800, 800);  // Set the preferred size of the panel
-    }
+	GameBoard board;
+	
+	HashMap<Integer, Point> tileCoordinates = new HashMap<>();
+	
+	public Interface(GameBoard inputBoard) {
+		this.board = inputBoard;
+		// HashMap to store center coordinates of each tile
+		HashMap<Integer, Point> tileCoordinates;  // Get tile coordinates
+	}
 	
 	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(800, 800);  // Set the preferred size of the panel
+	}
+	
+	@Override
+	// Draw the game board using Swing graphics
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		// Draw the game board using Swing graphics
+		// Draw grid
 		g.setColor(Color.BLACK);
-        drawGrid(g);
+		drawGrid(g);
+		
+		// Draw border around the board
+		g.drawRect(35, 35, 10 * 50, 10 * 50);
+		
 		// Draw chutes
 		g.setColor(Color.RED);
 		paintChutesAndLadders(g, GameBoard.chutes);
@@ -44,6 +53,7 @@ public class Interface extends JPanel {
 	}
 	
 	public void drawGrid(Graphics g) {
+		
 		int startX = 35;  // Initial X position
 		int startY = 35;  // Initial Y position
 		int cellSize = 50;  // Size of each cell
@@ -61,6 +71,8 @@ public class Interface extends JPanel {
 			int textX = x + (cellSize - fm.stringWidth(Integer.toString(i))) / 2;
 			int textY = y + ((cellSize - fm.getHeight()) / 2) + fm.getAscent();
 			
+			tileCoordinates.put(i, new Point((x + 25), (y + 25)));
+			
 			// Draw the number
 			g.drawString(Integer.toString(i), textX, textY);
 			
@@ -75,22 +87,13 @@ public class Interface extends JPanel {
 			}
 		}
 	}
-
+	
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
-			int startX = getXPosition(entry.getKey());
-			int startY = getYPosition(entry.getKey());
-			int endX = getXPosition(entry.getValue());
-			int endY = getYPosition(entry.getValue());
-			g.drawLine(startX, startY, endX, endY);
+			Point start = tileCoordinates.get(entry.getKey());
+			Point end = tileCoordinates.get(entry.getValue());
+			
+			g.drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(), (int) end.getY());
 		}
-	}
-
-	private int getXPosition(int position) {
-		return ((position % 10) * 50) + 35;  // Assuming each square is 50 pixels wide + 35 from the wall and center tile
-	}
-	
-	private int getYPosition(int position) {
-		return (500 - (position / 10) * 50) + 35;  // Assuming each square is 50 pixels high + 35 for wall and center
 	}
 }
