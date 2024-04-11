@@ -22,6 +22,8 @@ public class GameBoard {
 	
 	// Stored Player Position used in chute and ladder checks
 	static int playerposition;
+
+	Die die1 = new Die(6, 1);
 	
 	public GameBoard() {
 		chutes = new HashMap<>();
@@ -58,6 +60,11 @@ public class GameBoard {
 	}
 	
 	/// ### PLAYER MOVEMENT FUNCTIONS
+
+	public int rollDice() {
+		die1.roll();
+		return die1.getSideUp();
+	}
 	
 	public static int checkChuteOrLadder(int position) {
 		checkForLadder(position);

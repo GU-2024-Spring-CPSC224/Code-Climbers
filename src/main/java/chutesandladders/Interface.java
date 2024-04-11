@@ -12,7 +12,10 @@ package chutesandladders;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.HashMap;
+
 
 
 
@@ -105,6 +108,13 @@ public class Interface extends JPanel {
 		g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
 		g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
 		g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
+
+		button.addActionListener(new ActionListener() {
+			@Override
+            public void actionPerformed(ActionEvent event) {
+                System.out.println(board.rollDice());
+            }
+		});
 	}
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
