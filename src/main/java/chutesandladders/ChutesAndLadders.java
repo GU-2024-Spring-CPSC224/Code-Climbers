@@ -14,26 +14,23 @@ package chutesandladders;
 //    Implement Swing components for player input and game controls.
 
 import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChutesAndLadders {
 	public static void main(String[] args) {
-		GameBoard board = new GameBoard();
 		Player player1 = new Player("Player 1");
 		Player player2 = new Player("Player 2");
+		List<Player> playerList = new ArrayList<>();
+		playerList.add(player1);
+
+		Control control = new Control(playerList);
+		control.executeGame();
 		
-		System.out.println(board.chutes);
-		System.out.println(board.ladders);
 		
-		createUI(board);
 	}
 
-	private static void createUI(GameBoard board) {
-		Interface UI = new Interface(board);
-		JFrame frame = new JFrame("Chutes and Ladders");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(UI);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+	public void createPlayers(List<Player> playerList) {
+
 	}
 }
