@@ -42,6 +42,10 @@ public class Interface extends JPanel {
 		
 		// Draw border around the board
 		g.drawRect(35, 35, 10 * 50, 10 * 50);
+
+		//draw box for dice
+		g.setColor(Color.BLACK);
+		drawDiceBox(g);
 		
 		// Draw chutes
 		g.setColor(Color.RED);
@@ -87,7 +91,15 @@ public class Interface extends JPanel {
 			}
 		}
 	}
-	
+
+	private void drawDiceBox(Graphics g) {
+		int centerX = 670;
+		int centerY = 400;
+		g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
+		g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
+		g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
+		g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
+	}
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
