@@ -33,7 +33,7 @@ public class Interface extends JPanel {
 		
 		// Draw the game board using Swing graphics
 		g.setColor(Color.BLACK);
-        drawTileBox(g);
+        drawGrid(g);
 		// Draw chutes
 		g.setColor(Color.RED);
 		paintChutesAndLadders(g, GameBoard.chutes);
@@ -43,34 +43,39 @@ public class Interface extends JPanel {
 		paintChutesAndLadders(g, GameBoard.ladders);
 	}
 	
-    private void drawTileBox(Graphics g) {
-        g.fillRect(10, 10, 500, 500);
-        g.setColor(Color.WHITE);
-        int x1 = 10;
-        int y1 = 60;
-        int x2 = 510;
-        int y2 = 60;
-        for (int i = 0; i < 9; i++) {
-            g.drawLine(x1, y1, x2, y2);
-            y1 += 50;
-            y2 += 50;
-        }
-        x1 = 60;
-        x2 = 60;
-        y1 = 10;
-        y2 = 510;
-        for (int i = 0; i < 9; i++) {
-            g.drawLine(x1, y1, x2, y2);
-            x1 += 50;
-            x2 += 50;
-        }
+	public void drawGrid(Graphics g) {
+		int startX = 35;  // Initial X position
+		int startY = 35;  // Initial Y position
+		int cellSize = 50;  // Size of each cell
+		FontMetrics fm = g.getFontMetrics();  // Get font metrics to center text
 		
-		for (int i = 0; i < 100; i++) {
-			int startX = getXPosition(i);
-			int startY = getYPosition(i);
+		for (int i = 1; i <= 100; i++) {
+			// Calculate the position based on the current number
+			int row = 9 - (i - 1) / 10;  // Reverse the row order
+			int col = (row % 2 == 0) ? ((100 - i) % 10) : (9 - ((100 - i) % 10));  // Column number
+			
+			int x = startX + col * cellSize;
+			int y = startY + row * cellSize;
+			
+			// Calculate center position for text
+			int textX = x + (cellSize - fm.stringWidth(Integer.toString(i))) / 2;
+			int textY = y + ((cellSize - fm.getHeight()) / 2) + fm.getAscent();
+			
+			// Draw the number
+			g.drawString(Integer.toString(i), textX, textY);
+			
+			// Draw vertical lines to separate cells
+			if (col < 9) {
+				g.drawLine(x + cellSize, y, x + cellSize, y + cellSize);
+			}
+			
+			// Draw horizontal lines to separate rows
+			if (row < 9) {
+				g.drawLine(x, y + cellSize, x + cellSize, y + cellSize);
+			}
 		}
+	}
 
-    }
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
 			int startX = getXPosition(entry.getKey());
