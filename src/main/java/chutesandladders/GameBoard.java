@@ -8,125 +8,84 @@
  * @version 1.0
  */
 package chutesandladders;
-import javax.swing.JPanel;
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
 
-
-public class GameBoard extends JPanel {
-	// Define board dimensions, chutes, ladders, etc.
-    Integer[] boardArray = new Integer[100];
-    ///array of 100 zeros
+// Define board dimensions, chutes, ladders, etc.
+public class GameBoard {
 	
 	// Hashmap for ladders, key, value int pair of start, end
-	HashMap<Integer, Integer> ladders;
+	static HashMap<Integer, Integer> ladders;
 	
 	// Hashmap for chutes, key, value int pair of start, end
-	HashMap<Integer, Integer> chutes;
+	static HashMap<Integer, Integer> chutes;
 	
-	int playerposition;
+	// Stored Player Position used in chute and ladder checks
+	static int playerposition;
 	
 	public GameBoard() {
-		this.chutes = new HashMap<>();
-		this.ladders = new HashMap<>();
+		chutes = new HashMap<>();
+		ladders = new HashMap<>();
 		generateChutesAndLadders();
+		playerposition = 0;
 	}
 	
 	private void generateChutesAndLadders() {
 		Random random = new Random();
-		
-		// Generate 5 chutes
-		for (int i = 0; i < 5; i++) {
-			int start = random.nextInt(98) + 1;
+		int chuteLadderNum = 5;
+		// Generate chutes
+		for (int i = 0; i < chuteLadderNum; i++) {
+			int startRow = (random.nextInt(8) + 2) * 10;  // Start row between 20 and 90
+			int start = startRow + random.nextInt(5) + 1;  // Start from current row to 5 steps below
 			int end = start - (random.nextInt(5) + 1) * 10;  // End is 5 to 15 steps below start
+			if (end < 1) {
+				end = 1;
+			}
 			chutes.put(start, end);
 		}
-		
-		// Generate 5 ladders
-		for (int i = 0; i < 5; i++) {
-			int start = random.nextInt(80) + 1;
+
+
+		// Generate ladders
+		for (int i = 0; i < chuteLadderNum; i++) {
+			int startRow = (random.nextInt(9) + 1) * 10;  // Start row between 10 and 100
+			int start = startRow - random.nextInt(5) - 1;  // Start from current row to 5 steps above
 			int end = start + (random.nextInt(20) + 10);  // End is 10 to 30 steps above start
+			if (end > 100) {
+				end = 100;
+			}
 			ladders.put(start, end);
 		}
 	}
 	
-	@Override
-    public Dimension getPreferredSize() {
-        return new Dimension(600, 600);  // Set preferred size of the panel
-    }
+	/// ### PLAYER MOVEMENT FUNCTIONS
 	
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		
-		// Draw the game board using Swing graphics
-		
-		// Draw chutes
-		g.setColor(Color.RED);
-		paintChutesAndLadders(g, chutes);
-		
-		// Draw ladders
-		g.setColor(Color.GREEN);
-		paintChutesAndLadders(g, ladders);
+	public static int checkChuteOrLadder(int position) {
+		checkForLadder(position);
+		checkForChute(position);
+		return playerposition;
 	}
 	
-	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
-		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
-			int startX = getXPosition(entry.getKey());
-			int startY = getYPosition(entry.getKey());
-			int endX = getXPosition(entry.getValue());
-			int endY = getYPosition(entry.getValue());
-			g.drawLine(startX, startY, endX, endY);
+	private static void checkForLadder(int position) {
+		if (ladders.containsKey(position)){
+			playerposition = ladders.get(position);
+			checkChuteOrLadder(playerposition);
 		}
 	}
 	
-	private int getXPosition(int position) {
-		return (position % 10) * 50;  // Assuming each square is 50 pixels wide
-	}
-	
-	private int getYPosition(int position) {
-		return 500 - (position / 10) * 50;  // Assuming each square is 50 pixels high
-	}
-	
-	
-	/**
-	 * Moves the player on the board.
-	 *
-	 * @param player The player to move.
-	 * @param steps  Number of steps to move.
-	 */
-	public void movePlayer(Player player, int steps) {
-		playerposition = player.move(steps);  // Assuming the Player class has a move method
-		checkChuteOrLadder(playerposition);  // Check for chutes or ladders after moving
-		//if yes then move player to end point
-	}
-	
-	
-	/**
-	 * Checks if the current position has a chute or ladder.
-	 *
-	 * @param position The current position of the player.
-	 * @return whether or not position is chute/ladder
-	 */
-	public boolean checkChuteOrLadder(int position) {
-		if (!checkForLadder(position)) {
-			checkForChute(position);
+	private static void checkForChute(int position) {
+		if (chutes.containsKey(position)){
+			playerposition = chutes.get(position);
+			checkChuteOrLadder(playerposition);
 		}
-		return false;
+	}
+
+	/// ### GETTERS AND SETTERS
+
+	public int getPlayerPosition() {
+		return playerposition;
 	}
 	
-	private boolean checkForLadder(int position) {
-		if (ladders.containsKey(position)) {
-			playerposition = ladders.get(position);  // Update player position to ladder end
-			return true;
-		}
-		return false;
-	}
-	
-	private void checkForChute(int position) {
-		if (chutes.containsKey(position)) {
-			playerposition = chutes.get(position);  // Update player position to chute end
-		}
+	public void setPlayerPosition(int position) {
+		playerposition = position;
 	}
 }

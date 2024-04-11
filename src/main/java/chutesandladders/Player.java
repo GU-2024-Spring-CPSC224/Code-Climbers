@@ -11,11 +11,10 @@ package chutesandladders;
 
 public class Player {
     private String name;
-    private int score;
-    private int currentPosition;
+	public int currentPosition;
     private static int playercount;
-    private Integer playerID;
-    private Die myDie;
+    private final Integer playerID;
+    private static final Die die = new Die(6, 6);;
     
     /**
      * Initializes a new player with the given name.
@@ -27,11 +26,9 @@ public class Player {
         if (name.isEmpty()) {
             name = "Player" + playercount;
         }
-        myDie = new Die(6, 6);
         this.name = name;
         this.currentPosition = 0;
-        this.score = 0;
-        playerID = playercount;
+	    playerID = playercount;
     }
     
     /**
@@ -39,18 +36,18 @@ public class Player {
      *
      * @param steps The number of steps to move.
      */
-    public int move(int steps) {
+    public void move(int steps) {
         // Update currentPosition based on steps
         this.currentPosition += steps;
-        return this.currentPosition;
+        currentPosition = GameBoard.checkChuteOrLadder(this.currentPosition);
     }
 
-    public Integer takeTurn() {
+    public void takeTurn() {
         Integer steps = 0;
         //roll dice
-        myDie.roll();
-        steps = myDie.getSideUp();
-        return steps;
+        die.roll();
+        steps = die.getSideUp();
+        move(steps);
     }
     
     // Getter and Setter methods

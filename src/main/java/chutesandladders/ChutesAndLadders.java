@@ -17,25 +17,23 @@ import javax.swing.JFrame;
 
 public class ChutesAndLadders {
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Chutes and Ladders");
 		GameBoard board = new GameBoard();
 		Player player1 = new Player("Player 1");
 		Player player2 = new Player("Player 2");
 		
-		// Add board and other Swing components to frame
+		System.out.println(board.chutes);
+		System.out.println(board.ladders);
 		
-		// Example function calls to demonstrate dependencies
-		board.movePlayer(player1, 3);
-		board.movePlayer(player2, 4);
+		createUI(board);
+	}
 
-		// Check for chutes or ladders after moving players
-		int position1 = player1.getCurrentPosition();
-		int position2 = player2.getCurrentPosition();
-		board.checkChuteOrLadder(position1);
-		board.checkChuteOrLadder(position2);
-		
+	private static void createUI(GameBoard board) {
+		Interface UI = new Interface(board);
+		JFrame frame = new JFrame("Chutes and Ladders");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(UI);
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 }
