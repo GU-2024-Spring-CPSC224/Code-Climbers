@@ -35,7 +35,8 @@ public class GameBoard {
 		int chuteLadderNum = 5;
 		// Generate chutes
 		for (int i = 0; i < chuteLadderNum; i++) {
-			int start = random.nextInt(94) + 6;  // Start from 6 to 99 to ensure space for chutes
+			int startRow = (random.nextInt(8) + 2) * 10;  // Start row between 20 and 90
+			int start = startRow + random.nextInt(5) + 1;  // Start from current row to 5 steps below
 			int end = start - (random.nextInt(5) + 1) * 10;  // End is 5 to 15 steps below start
 			if (end < 1) {
 				end = 1;
@@ -43,9 +44,11 @@ public class GameBoard {
 			chutes.put(start, end);
 		}
 
+
 		// Generate ladders
 		for (int i = 0; i < chuteLadderNum; i++) {
-			int start = random.nextInt(90) + 1;  // Start from 1 to 90 to ensure space for ladders
+			int startRow = (random.nextInt(9) + 1) * 10;  // Start row between 10 and 100
+			int start = startRow - random.nextInt(5) - 1;  // Start from current row to 5 steps above
 			int end = start + (random.nextInt(20) + 10);  // End is 10 to 30 steps above start
 			if (end > 100) {
 				end = 100;
