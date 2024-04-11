@@ -28,7 +28,7 @@ public class Interface extends JPanel {
 	
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(800, 800);  // Set the preferred size of the panel
+		return new Dimension(900, 570);  // Set the preferred size of the panel
 	}
 	
 	@Override
@@ -38,7 +38,7 @@ public class Interface extends JPanel {
 		
 		// Draw grid
 		g.setColor(Color.BLACK);
-		drawGrid(g);
+		drawTileGrid(g);
 		
 		// Draw border around the board
 		g.drawRect(35, 35, 10 * 50, 10 * 50);
@@ -52,7 +52,7 @@ public class Interface extends JPanel {
 		paintChutesAndLadders(g, GameBoard.ladders);
 	}
 	
-	public void drawGrid(Graphics g) {
+	public void drawTileGrid(Graphics g) {
 		
 		int startX = 35;  // Initial X position
 		int startY = 35;  // Initial Y position
