@@ -18,6 +18,7 @@ public class Interface extends JPanel {
 	GameBoard board;
 	Control control;
 	Graphics g;
+	JButton rollButton; // Declare roll button as a class-level field
 	
 	static HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
@@ -26,6 +27,12 @@ public class Interface extends JPanel {
 		this.control = inControl;
 		// HashMap to store center coordinates of each tile
 		HashMap<Integer, Point> tileCoordinates = Interface.tileCoordinates;  // Get tile coordinates
+		// Initialize the roll button
+        rollButton = new JButton("ROLL");
+        rollButton.setVisible(false);
+        // Set the bounds for the roll button
+        drawDiceBox(g, rollButton);
+        this.add(rollButton);
 	}
 	
 	@Override
@@ -98,18 +105,19 @@ public class Interface extends JPanel {
 	}
 
 	private void drawDiceBox(Graphics g, JButton button) {
-		int centerX = 670;
-		int centerY = 400;
-		button.setBounds(centerX - 50, centerY + 75, 100, 50);
-		button.setVisible(true);
-		g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
-		g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
-		g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
-		g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
+        int centerX = 670;
+        int centerY = 400;
+        button.setBounds(centerX - 50, centerY + 75, 100, 50);
+        button.setVisible(true);
+        g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
+        g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
+        g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
+        g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
 
-		button.addActionListener(event -> control.playTurn());
-	}
-
+        // Add action listener only once
+        button.addActionListener(event -> control.playTurn());
+    }
+	
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
