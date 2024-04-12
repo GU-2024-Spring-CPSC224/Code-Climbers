@@ -39,7 +39,7 @@ public class Player {
     public void move(int steps) {
         // Update currentPosition based on steps
         this.currentPosition += steps;
-        currentPosition = GameBoard.checkChuteOrLadder(this.currentPosition);
+        //currentPosition = GameBoard.checkChuteOrLadder(this.currentPosition);
     }
 
     public void takeTurn() {

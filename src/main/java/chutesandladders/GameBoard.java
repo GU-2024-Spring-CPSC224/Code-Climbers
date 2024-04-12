@@ -61,29 +61,38 @@ public class GameBoard {
 	
 	/// ### PLAYER MOVEMENT FUNCTIONS
 
+	public int movePlayer(int curPos) {
+		int newPos = curPos;
+		curPos += rollDice();
+		newPos = checkChuteOrLadder(curPos);
+		return newPos;
+	}
+
 	public int rollDice() {
 		die1.roll();
 		return die1.getSideUp();
 	}
 	
-	public static int checkChuteOrLadder(int position) {
-		checkForLadder(position);
-		checkForChute(position);
-		return playerposition;
+	public int checkChuteOrLadder(int position) {
+		position = checkForLadder(position);
+		position = checkForChute(position);
+		return position;
 	}
 	
-	private static void checkForLadder(int position) {
+	private int checkForLadder(int position) {
 		if (ladders.containsKey(position)){
-			playerposition = ladders.get(position);
-			checkChuteOrLadder(playerposition);
+			position = ladders.get(position);
+			position = checkChuteOrLadder(position);
 		}
+		return position;
 	}
 	
-	private static void checkForChute(int position) {
+	private int checkForChute(int position) {
 		if (chutes.containsKey(position)){
-			playerposition = chutes.get(position);
-			checkChuteOrLadder(playerposition);
+			position = chutes.get(position);
+			position = checkChuteOrLadder(position);
 		}
+		return position;
 	}
 
 	/// ### GETTERS AND SETTERS

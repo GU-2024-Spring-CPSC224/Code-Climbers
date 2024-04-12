@@ -21,11 +21,13 @@ import java.util.HashMap;
 
 public class Interface extends JPanel {
 	GameBoard board;
+	Control control;
 	
 	HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
-	public Interface(GameBoard inputBoard) {
+	public Interface(GameBoard inputBoard, Control inControl) {
 		this.board = inputBoard;
+		this.control = inControl;
 		// HashMap to store center coordinates of each tile
 		HashMap<Integer, Point> tileCoordinates;  // Get tile coordinates
 	}
@@ -112,7 +114,7 @@ public class Interface extends JPanel {
 		button.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent event) {
-                System.out.println(board.rollDice());
+                control.playTurn();
             }
 		});
 	}

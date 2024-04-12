@@ -26,7 +26,6 @@ public class Control {
     }
 
     public void startGame() {
-        createUI(board);
         System.out.println(board.chutes);
         System.out.println(board.ladders);
     
@@ -35,7 +34,7 @@ public class Control {
     public void playGame() {
         boolean gameOver = false;
         while (!gameOver) {
-            
+
         }
     }
       
@@ -43,19 +42,16 @@ public class Control {
           
     }
 
-    private void playTurn() {
-
+    public void playTurn() {
+        playerList.get(0).setCurrentPosition(board.movePlayer(playerList.get(0).getCurrentPosition()));
+        System.out.println(playerList.get(0).getCurrentPosition());
     }
 
-    private static void createUI(GameBoard board) {
-        Interface UI = new Interface(board);
-        JFrame frame = new JFrame("Chutes and Ladders");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(UI);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+    public GameBoard getBoard() {
+        return board;
     }
+
+    
     
     
 }
