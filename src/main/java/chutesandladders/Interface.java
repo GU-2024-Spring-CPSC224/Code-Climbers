@@ -14,9 +14,6 @@ import javax.swing.JButton;
 import java.awt.*;
 import java.util.HashMap;
 
-
-
-
 public class Interface extends JPanel {
 	GameBoard board;
 	Control control;
