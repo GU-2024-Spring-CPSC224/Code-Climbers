@@ -14,7 +14,7 @@ public class Player {
 	public int currentPosition;
     private static int playercount;
     private final Integer playerID;
-    private static final Die die = new Die(6, 6);;
+    private static final Die die = new Die(6, 6);
     
     /**
      * Initializes a new player with the given name.
@@ -43,7 +43,7 @@ public class Player {
     }
 
     public void takeTurn() {
-        Integer steps = 0;
+        int steps;
         //roll dice
         die.roll();
         steps = die.getSideUp();
@@ -59,7 +59,6 @@ public class Player {
 
     public void setPlayerName(String input) {
         name = input;
-        return;
     }
 
     //get ID
@@ -81,7 +80,7 @@ public class Player {
     /**
      * Sets the current position of the player on the board.
      *
-     * @param currentPosition The new position to set.
+     * @param inputPosition The new position to set.
      */
     public void setCurrentPosition(int inputPosition) {
         if (inputPosition >= 100) {
