@@ -118,6 +118,7 @@ public class Interface extends JPanel {
             }
 		});
 	}
+
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
@@ -125,5 +126,10 @@ public class Interface extends JPanel {
 			
 			g.drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(), (int) end.getY());
 		}
+	}
+
+	public void renderPlayers(int position) {
+		
+		tileCoordinates.get(position);
 	}
 }

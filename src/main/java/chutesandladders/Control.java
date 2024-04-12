@@ -15,6 +15,8 @@ import java.util.List;
 
 public class Control {
     private GameBoard board = new GameBoard();
+    private Interface UI;
+    private JFrame frame;
     private List<Player> playerList;
     private Player activePlayer;
 
@@ -45,6 +47,7 @@ public class Control {
     public void playTurn() {
         activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
         System.out.println(playerList.get(0).getCurrentPosition());
+        UI.renderPlayers(activePlayer.getCurrentPosition());
     }
 
     public GameBoard getBoard() {
@@ -52,16 +55,12 @@ public class Control {
     }
 
     private void createUI(GameBoard board) {
-        Interface UI = new Interface(board, this);
-        JFrame frame = new JFrame("Chutes and Ladders");
+        UI = new Interface(board, this);
+        frame = new JFrame("Chutes and Ladders");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(UI);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-
-    
-    
-    
 }
