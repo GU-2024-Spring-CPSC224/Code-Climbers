@@ -25,22 +25,9 @@ public class ChutesAndLadders {
 		playerList.add(player1);
 
 		Control control = new Control(playerList);
-        createUI(control.getBoard(), control);
 		control.executeGame();
 	}
-
-
 	public void createPlayers(List<Player> playerList) {
 
 	}
-
-	private static void createUI(GameBoard board, Control control) {
-        Interface UI = new Interface(board, control);
-        JFrame frame = new JFrame("Chutes and Ladders");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(UI);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
 }

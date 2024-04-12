@@ -83,7 +83,11 @@ public class Player {
      *
      * @param currentPosition The new position to set.
      */
-    public void setCurrentPosition(int currentPosition) {
-        this.currentPosition = currentPosition;
+    public void setCurrentPosition(int inputPosition) {
+        if (inputPosition >= 100) {
+            currentPosition = 100;
+            return;
+        }
+        currentPosition = inputPosition;
     }
 }
