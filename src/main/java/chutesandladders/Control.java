@@ -10,14 +10,12 @@
 package chutesandladders;
 
 import javax.swing.JFrame;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Control {
-    private GameBoard board = new GameBoard();
+    private final GameBoard board = new GameBoard();
     private Interface UI;
-    private JFrame frame;
-    private List<Player> playerList;
+	private final List<Player> playerList;
     private Player activePlayer;
 
     public Control(List<Player> inList) {
@@ -29,8 +27,8 @@ public class Control {
     }
 
     public void startGame() {
-        System.out.println(board.chutes);
-        System.out.println(board.ladders);
+        System.out.println(GameBoard.chutes);
+        System.out.println(GameBoard.ladders);
         createUI(board);
         playGame();
     }
@@ -56,7 +54,7 @@ public class Control {
 
     private void createUI(GameBoard board) {
         UI = new Interface(board, this);
-        frame = new JFrame("Chutes and Ladders");
+	    JFrame frame = new JFrame("Chutes and Ladders");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(UI);
         frame.pack();
