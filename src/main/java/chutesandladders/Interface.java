@@ -17,6 +17,7 @@ import java.util.HashMap;
 public class Interface extends JPanel {
 	GameBoard board;
 	Control control;
+	Graphics g;
 	
 	static HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
