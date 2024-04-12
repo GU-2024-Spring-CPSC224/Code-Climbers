@@ -18,6 +18,7 @@ public class Interface extends JPanel {
 	GameBoard board;
 	Control control;
 	JButton rollButton; // Declare roll button as a class-level field
+	private Graphics g;
 	
 	static HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
@@ -41,24 +42,25 @@ public class Interface extends JPanel {
 	// Render the game board using Swing graphics
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		this.g = g;
 		
 		// Render the Board
-		drawBoard(g);
+		drawBoard();
 
 		// Render the "ROLL" button and the dice box
-		drawDiceBox(g, rollButton);
+		drawDiceBox(rollButton);
 		
 		// THESE FUNCTIONS ALWAYS CALLED LAST
 		// Draw chutes
 		g.setColor(Color.RED);
-		paintChutesAndLadders(g, GameBoard.chutes);
+		paintChutesAndLadders(GameBoard.chutes);
 		
 		// Draw ladders
 		g.setColor(Color.GREEN);
-		paintChutesAndLadders(g, GameBoard.ladders);
+		paintChutesAndLadders(GameBoard.ladders);
 	}
 	
-	public void drawBoard(Graphics g) {
+	public void drawBoard() {
 		g.setColor(Color.BLACK);
 		
 		int startX = 35;  // Initial X position
@@ -98,7 +100,7 @@ public class Interface extends JPanel {
 		g.drawRect(35, 35, 10 * 50, 10 * 50);
 	}
 
-	private void drawDiceBox(Graphics g, JButton button) {
+	private void drawDiceBox(JButton button) {
 		g.setColor(Color.BLACK);
         int centerX = 670;
         int centerY = 400;
@@ -113,8 +115,8 @@ public class Interface extends JPanel {
         button.addActionListener(event -> control.playTurn());
     }
 	
-	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
-		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
+	private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder) {
+		for (HashMap.Entry<Integer, Integer> entry : chuteLadder.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
 			Point end = tileCoordinates.get(entry.getValue());
 			
