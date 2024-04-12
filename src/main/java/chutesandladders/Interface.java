@@ -12,22 +12,19 @@ package chutesandladders;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.util.HashMap;
-
-
-
 
 public class Interface extends JPanel {
 	GameBoard board;
+	Control control;
 	
-	HashMap<Integer, Point> tileCoordinates = new HashMap<>();
+	static HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
-	public Interface(GameBoard inputBoard) {
+	public Interface(GameBoard inputBoard, Control inControl) {
 		this.board = inputBoard;
+		this.control = inControl;
 		// HashMap to store center coordinates of each tile
-		HashMap<Integer, Point> tileCoordinates;  // Get tile coordinates
+		HashMap<Integer, Point> tileCoordinates = Interface.tileCoordinates;  // Get tile coordinates
 	}
 	
 	@Override
@@ -68,7 +65,7 @@ public class Interface extends JPanel {
 		int startX = 35;  // Initial X position
 		int startY = 35;  // Initial Y position
 		int cellSize = 50;  // Size of each cell
-		FontMetrics fm = g.getFontMetrics();  // Get font metrics to center text
+		FontMetrics fm = g.getFontMetrics();  // Get font metrics to a center text
 		
 		for (int i = 1; i <= 100; i++) {
 			// Calculate the position based on the current number
@@ -109,13 +106,9 @@ public class Interface extends JPanel {
 		g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
 		g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
 
-		button.addActionListener(new ActionListener() {
-			@Override
-            public void actionPerformed(ActionEvent event) {
-                System.out.println(board.rollDice());
-            }
-		});
+		button.addActionListener(event -> control.playTurn());
 	}
+
 	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
 		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
@@ -123,5 +116,10 @@ public class Interface extends JPanel {
 			
 			g.drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(), (int) end.getY());
 		}
+	}
+
+	public void renderPlayers(int position) {
+		
+		tileCoordinates.get(position);
 	}
 }
