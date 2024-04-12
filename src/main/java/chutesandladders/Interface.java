@@ -34,11 +34,6 @@ public class Interface extends JPanel {
 	}
 	
 	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(900, 570);  // Set the preferred size of the panel
-	}
-	
-	@Override
 	// Render the game board using Swing graphics
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
