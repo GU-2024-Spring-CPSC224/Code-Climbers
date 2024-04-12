@@ -17,7 +17,6 @@ import java.util.HashMap;
 public class Interface extends JPanel {
 	GameBoard board;
 	Control control;
-	Graphics g;
 	JButton rollButton; // Declare roll button as a class-level field
 	
 	static HashMap<Integer, Point> tileCoordinates = new HashMap<>();
@@ -30,8 +29,6 @@ public class Interface extends JPanel {
 		// Initialize the roll button
         rollButton = new JButton("ROLL");
         rollButton.setVisible(false);
-        // Set the bounds for the roll button
-        drawDiceBox(g, rollButton);
         this.add(rollButton);
 	}
 	
@@ -41,24 +38,17 @@ public class Interface extends JPanel {
 	}
 	
 	@Override
-	// Draw the game board using Swing graphics
+	// Render the game board using Swing graphics
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		// Draw grid
-		g.setColor(Color.BLACK);
-		drawTileGrid(g);
-		
-		// Draw border around the board
-		g.drawRect(35, 35, 10 * 50, 10 * 50);
+		// Render the Board
+		drawBoard(g);
 
-		//draw box for dice
-		JButton rollButton = new JButton("ROLL");
-		rollButton.setVisible(false);
-		g.setColor(Color.BLACK);
+		// Render the "ROLL" button and the dice box
 		drawDiceBox(g, rollButton);
-		this.add(rollButton);
 		
+		// THESE FUNCTIONS ALWAYS CALLED LAST
 		// Draw chutes
 		g.setColor(Color.RED);
 		paintChutesAndLadders(g, GameBoard.chutes);
@@ -68,7 +58,8 @@ public class Interface extends JPanel {
 		paintChutesAndLadders(g, GameBoard.ladders);
 	}
 	
-	public void drawTileGrid(Graphics g) {
+	public void drawBoard(Graphics g) {
+		g.setColor(Color.BLACK);
 		
 		int startX = 35;  // Initial X position
 		int startY = 35;  // Initial Y position
@@ -102,9 +93,13 @@ public class Interface extends JPanel {
 				g.drawLine(x, y + cellSize, x + cellSize, y + cellSize);
 			}
 		}
+		
+		// Draw border around the board
+		g.drawRect(35, 35, 10 * 50, 10 * 50);
 	}
 
 	private void drawDiceBox(Graphics g, JButton button) {
+		g.setColor(Color.BLACK);
         int centerX = 670;
         int centerY = 400;
         button.setBounds(centerX - 50, centerY + 75, 100, 50);
