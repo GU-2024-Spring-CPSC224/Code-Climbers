@@ -30,7 +30,9 @@ public class Interface extends JPanel {
 		// Initialize the roll button
         rollButton = new JButton("ROLL");
         rollButton.setVisible(false);
-        this.add(rollButton);
+		// Add action listener only once
+        rollButton.addActionListener(event -> control.playTurn());
+        add(rollButton);
 	}
 	
 	@Override
@@ -105,9 +107,6 @@ public class Interface extends JPanel {
         g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
         g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
         g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
-
-        // Add action listener only once
-        button.addActionListener(event -> control.playTurn());
     }
 	
 	private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder) {
