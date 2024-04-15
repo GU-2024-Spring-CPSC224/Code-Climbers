@@ -12,65 +12,58 @@ package chutesandladders;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.util.HashMap;
-
-
-
 
 public class Interface extends JPanel {
 	GameBoard board;
 	Control control;
+	JButton rollButton; // Declare roll button as a class-level field
+	private Graphics g;
 	
-	HashMap<Integer, Point> tileCoordinates = new HashMap<>();
+	static HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
 	public Interface(GameBoard inputBoard, Control inControl) {
 		this.board = inputBoard;
 		this.control = inControl;
 		// HashMap to store center coordinates of each tile
-		HashMap<Integer, Point> tileCoordinates;  // Get tile coordinates
+		HashMap<Integer, Point> tileCoordinates = Interface.tileCoordinates;  // Get tile coordinates
+		// Initialize the roll button
+        rollButton = new JButton("ROLL");
+        rollButton.setVisible(false);
+		// Add action listener only once
+        rollButton.addActionListener(event -> control.playTurn());
+        add(rollButton);
 	}
 	
 	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(900, 570);  // Set the preferred size of the panel
-	}
-	
-	@Override
-	// Draw the game board using Swing graphics
+	// Render the game board using Swing graphics
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		this.g = g;
 		
-		// Draw grid
-		g.setColor(Color.BLACK);
-		drawTileGrid(g);
-		
-		// Draw border around the board
-		g.drawRect(35, 35, 10 * 50, 10 * 50);
+		// Render the Board
+		drawBoard();
 
-		//draw box for dice
-		JButton rollButton = new JButton("ROLL");
-		rollButton.setVisible(false);
-		g.setColor(Color.BLACK);
-		drawDiceBox(g, rollButton);
-		this.add(rollButton);
+		// Render the "ROLL" button and the dice box
+		drawDiceBox(rollButton);
 		
+		// THESE FUNCTIONS ALWAYS CALLED LAST
 		// Draw chutes
 		g.setColor(Color.RED);
-		paintChutesAndLadders(g, GameBoard.chutes);
+		paintChutesAndLadders(GameBoard.chutes);
 		
 		// Draw ladders
 		g.setColor(Color.GREEN);
-		paintChutesAndLadders(g, GameBoard.ladders);
+		paintChutesAndLadders(GameBoard.ladders);
 	}
 	
-	public void drawTileGrid(Graphics g) {
+	public void drawBoard() {
+		g.setColor(Color.BLACK);
 		
 		int startX = 35;  // Initial X position
 		int startY = 35;  // Initial Y position
 		int cellSize = 50;  // Size of each cell
-		FontMetrics fm = g.getFontMetrics();  // Get font metrics to center text
+		FontMetrics fm = g.getFontMetrics();  // Get font metrics to a center text
 		
 		for (int i = 1; i <= 100; i++) {
 			// Calculate the position based on the current number
@@ -99,28 +92,25 @@ public class Interface extends JPanel {
 				g.drawLine(x, y + cellSize, x + cellSize, y + cellSize);
 			}
 		}
+		
+		// Draw border around the board
+		g.drawRect(35, 35, 10 * 50, 10 * 50);
 	}
 
-	private void drawDiceBox(Graphics g, JButton button) {
-		int centerX = 670;
-		int centerY = 400;
-		button.setBounds(centerX - 50, centerY + 75, 100, 50);
-		button.setVisible(true);
-		g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
-		g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
-		g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
-		g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
-
-		button.addActionListener(new ActionListener() {
-			@Override
-            public void actionPerformed(ActionEvent event) {
-                control.playTurn();
-            }
-		});
-	}
-
-	private void paintChutesAndLadders(Graphics g, HashMap<Integer, Integer> chutes) {
-		for (HashMap.Entry<Integer, Integer> entry : chutes.entrySet()) {
+	private void drawDiceBox(JButton button) {
+		g.setColor(Color.BLACK);
+        int centerX = 670;
+        int centerY = 400;
+        button.setBounds(centerX - 50, centerY + 75, 100, 50);
+        button.setVisible(true);
+        g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
+        g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
+        g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
+        g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
+    }
+	
+	private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder) {
+		for (HashMap.Entry<Integer, Integer> entry : chuteLadder.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
 			Point end = tileCoordinates.get(entry.getValue());
 			

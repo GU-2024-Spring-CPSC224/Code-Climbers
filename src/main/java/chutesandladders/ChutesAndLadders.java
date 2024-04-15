@@ -13,14 +13,12 @@ package chutesandladders;
 //    Create instances of GameBoard and manage game flow.
 //    Implement Swing components for player input and game controls.
 
-import javax.swing.JFrame;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChutesAndLadders {
 	public static void main(String[] args) {
 		Player player1 = new Player("Player 1");
-		Player player2 = new Player("Player 2");
 		List<Player> playerList = new ArrayList<>();
 		playerList.add(player1);
 
