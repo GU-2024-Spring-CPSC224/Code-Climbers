@@ -128,8 +128,8 @@ public class Interface extends JPanel {
 		}
 	}
 
-	public void renderPlayers(Graphics g, int position) {
-		super.paintComponent(g);
+	public void renderPlayers(int position) {
+		//super.paintComponent(g);
 		tileCoordinates.get(position);
 
 	}
