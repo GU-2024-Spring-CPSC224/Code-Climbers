@@ -46,6 +46,8 @@ public class Interface extends JPanel {
 
 		// Render the "ROLL" button and the dice box
 		drawDiceBox(rollButton);
+
+		renderPlayers(4);
 		
 		// THESE FUNCTIONS ALWAYS CALLED LAST
 		// Draw chutes
@@ -120,7 +122,11 @@ public class Interface extends JPanel {
 
 	public void renderPlayers(int position) {
 		//super.paintComponent(g);
-		tileCoordinates.get(position);
-
+		System.out.println("HELLO WORLD");
+		int x1 = (int)tileCoordinates.get(position).getX();
+		int y1 = (int)tileCoordinates.get(position).getY();
+		g.setColor(Color.BLACK);
+		g.drawRect(100,100,30,30);	
+		repaint();
 	}
 }
