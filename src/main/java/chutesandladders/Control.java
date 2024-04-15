@@ -45,7 +45,6 @@ public class Control {
 
     public void playTurn() {
         activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
-        System.out.println(playerList.get(0).getCurrentPosition());
         UI.repaint();
     }
 
