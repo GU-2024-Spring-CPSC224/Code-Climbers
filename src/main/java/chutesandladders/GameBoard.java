@@ -89,13 +89,13 @@ public class GameBoard {
 		return die1.getSideUp();
 	}
 	
-	public int checkChuteOrLadder(int position) {
+	public static int checkChuteOrLadder(int position) {
 		position = checkForLadder(position);
 		position = checkForChute(position);
 		return position;
 	}
 	
-	private int checkForLadder(int position) {
+	private static int checkForLadder(int position) {
 		if (ladders.containsKey(position)){
 			position = ladders.get(position);
 			position = checkChuteOrLadder(position);
@@ -103,7 +103,7 @@ public class GameBoard {
 		return position;
 	}
 	
-	private int checkForChute(int position) {
+	private static int checkForChute(int position) {
 		if (chutes.containsKey(position)){
 			position = chutes.get(position);
 			position = checkChuteOrLadder(position);

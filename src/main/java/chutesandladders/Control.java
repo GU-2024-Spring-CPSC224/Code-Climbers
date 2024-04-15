@@ -45,8 +45,7 @@ public class Control {
 
     public void playTurn() {
         activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
-        System.out.println(playerList.get(0).getCurrentPosition());
-        UI.renderPlayers(activePlayer.getCurrentPosition());
+        UI.repaint();
     }
 
     public GameBoard getBoard() {
@@ -62,5 +61,9 @@ public class Control {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+    
+    List <Player> getPlayerList() {
+        return playerList;
     }
 }

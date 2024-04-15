@@ -27,27 +27,8 @@ public class Player {
             name = "Player" + playercount;
         }
         this.name = name;
-        this.currentPosition = 0;
+        this.currentPosition = 1;
 	    playerID = playercount;
-    }
-    
-    /**
-     * Moves the player a specified number of steps.
-     *
-     * @param steps The number of steps to move.
-     */
-    public void move(int steps) {
-        // Update currentPosition based on steps
-        this.currentPosition += steps;
-        //currentPosition = GameBoard.checkChuteOrLadder(this.currentPosition);
-    }
-
-    public void takeTurn() {
-        int steps;
-        //roll dice
-        die.roll();
-        steps = die.getSideUp();
-        move(steps);
     }
     
     // Getter and Setter methods
