@@ -41,14 +41,6 @@ public class Player {
         this.currentPosition += steps;
         currentPosition = GameBoard.checkChuteOrLadder(this.currentPosition);
     }
-
-    public void takeTurn() {
-        int steps;
-        //roll dice
-        die.roll();
-        steps = die.getSideUp();
-        move(steps);
-    }
     
     // Getter and Setter methods
 
