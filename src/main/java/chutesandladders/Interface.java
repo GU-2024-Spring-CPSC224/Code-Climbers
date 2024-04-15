@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.List;
 
 public class Interface extends JPanel {
 	GameBoard board;
@@ -47,7 +48,7 @@ public class Interface extends JPanel {
 		// Render the "ROLL" button and the dice box
 		drawDiceBox(rollButton);
 
-		renderPlayers(4);
+		renderPlayers(control.getPlayerList());
 		
 		// THESE FUNCTIONS ALWAYS CALLED LAST
 		// Draw chutes
@@ -120,13 +121,13 @@ public class Interface extends JPanel {
 		}
 	}
 
-	public void renderPlayers(int position) {
-		//super.paintComponent(g);
-		System.out.println("HELLO WORLD");
-		int x1 = (int)tileCoordinates.get(position).getX();
-		int y1 = (int)tileCoordinates.get(position).getY();
-		g.setColor(Color.BLACK);
-		g.drawRect(100,100,30,30);	
-		repaint();
+	public void renderPlayers(List<Player> playerList) {
+		for (Player player : playerList) {
+			int position = player.currentPosition;
+			int x1 = (int) tileCoordinates.get(position).getX() - (25 / 2);
+			int y1 = (int) tileCoordinates.get(position).getY() - (25 / 2);
+			g.setColor(Color.BLACK);
+			g.drawRect(x1, y1, 25, 25);
+		}
 	}
 }
