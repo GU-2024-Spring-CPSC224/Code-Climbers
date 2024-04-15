@@ -31,17 +31,6 @@ public class Player {
 	    playerID = playercount;
     }
     
-    /**
-     * Moves the player a specified number of steps.
-     *
-     * @param steps The number of steps to move.
-     */
-    public void move(int steps) {
-        // Update currentPosition based on steps
-        this.currentPosition += steps;
-        currentPosition = GameBoard.checkChuteOrLadder(this.currentPosition);
-    }
-    
     // Getter and Setter methods
 
     //get name
