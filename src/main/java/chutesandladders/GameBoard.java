@@ -24,7 +24,7 @@ public class GameBoard {
 	
 	// Stored Player Position used in chute and ladder checks
 	static int playerposition;
-
+	
 	Die die1 = new Die(6, 1);
 	
 	public GameBoard() {
@@ -76,14 +76,14 @@ public class GameBoard {
 	}
 	
 	/// ### PLAYER MOVEMENT FUNCTIONS
-
+	
 	public int movePlayer(int curPos) {
 		int newPos;
 		curPos += rollDice();
 		newPos = checkChuteOrLadder(curPos);
 		return newPos;
 	}
-
+	
 	public int rollDice() {
 		die1.roll();
 		return die1.getSideUp();
@@ -96,7 +96,7 @@ public class GameBoard {
 	}
 	
 	private static int checkForLadder(int position) {
-		if (ladders.containsKey(position)){
+		if (ladders.containsKey(position)) {
 			position = ladders.get(position);
 			position = checkChuteOrLadder(position);
 		}
@@ -104,20 +104,10 @@ public class GameBoard {
 	}
 	
 	private static int checkForChute(int position) {
-		if (chutes.containsKey(position)){
+		if (chutes.containsKey(position)) {
 			position = chutes.get(position);
 			position = checkChuteOrLadder(position);
 		}
 		return position;
-	}
-
-	/// ### GETTERS AND SETTERS
-
-	public int getPlayerPosition() {
-		return playerposition;
-	}
-	
-	public void setPlayerPosition(int position) {
-		playerposition = position;
 	}
 }

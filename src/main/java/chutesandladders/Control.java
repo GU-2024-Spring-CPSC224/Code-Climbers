@@ -40,7 +40,7 @@ public class Control {
     }
 
     public void startGame() {
-        createUI(board, frame); // Pass the JFrame instance to the createUI method
+        createUI(frame); // Pass the JFrame instance to the createUI method
         playGame();
     }
 
@@ -69,8 +69,8 @@ public class Control {
         }
     }
 
-    private void createUI(GameBoard board, JFrame frame) {
-        UI = new Interface(board, this, frame);
+    private void createUI(JFrame frame) {
+        UI = new Interface(this, frame);
         frame.add(UI);
         frame.pack();
     }

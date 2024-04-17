@@ -19,7 +19,7 @@ public class Interface extends JPanel {
 	private final Control control;
 	private final HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
-	public Interface(GameBoard board, Control control, JFrame frame) {
+	public Interface(Control control, JFrame frame) {
 		this.control = control;
 		// Initialize components and configure frame if needed
 		initializeFrame(frame);
