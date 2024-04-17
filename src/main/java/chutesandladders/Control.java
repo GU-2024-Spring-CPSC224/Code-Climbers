@@ -19,6 +19,8 @@ public class Control {
     private Interface UI;
     private final List<Player> playerList;
     private Player activePlayer;
+    private final JFrame frame; // Initialize the JFrame
+    boolean gameOver = false;
 
     public Control(List<Player> inList) {
         playerList = inList;
@@ -38,19 +40,16 @@ public class Control {
     }
 
     public void startGame() {
-        System.out.println(GameBoard.chutes);
-        System.out.println(GameBoard.ladders);
-        createUI(board);
+        createUI(board, frame); // Pass the JFrame instance to the createUI method
         playGame();
     }
 
     public void playGame() {
-        boolean gameOver = false;
         activePlayer = playerList.get(0);
     }
 
     public void endGame() {
-        UI.close(frame);
+        UI.close();
     }
 
     public void playTurn() {
@@ -70,19 +69,10 @@ public class Control {
         }
     }
 
-    public GameBoard getBoard() {
-        return board;
-    }
-
-    private void createUI(GameBoard board) {
-        UI = new Interface(board, this);
-	    JFrame frame = new JFrame("Chutes and Ladders");
-        frame.setMinimumSize(new Dimension(800, 600));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    private void createUI(GameBoard board, JFrame frame) {
+        UI = new Interface(board, this, frame);
         frame.add(UI);
         frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 
     List<Player> getPlayerList() {
