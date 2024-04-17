@@ -10,7 +10,8 @@
 package chutesandladders;
 
 import javax.swing.JFrame;
-import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.List;
 
 public class Control {
