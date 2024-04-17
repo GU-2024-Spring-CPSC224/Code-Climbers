@@ -4,13 +4,11 @@
  * Final Project
  * Sources: N/A
  * 
- * @author William Garlington, Steve Deibert, Manny Uzoma
+ * @author William Garlington, Steve Deibert
  * @version 1.0
  */
 package chutesandladders;
-
-import javax.swing.JPanel;
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
@@ -110,9 +108,12 @@ public class Interface extends JPanel {
         g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
         g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
         g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
+                drawBoard(g);
+                drawPlayers(g, control.getPlayerList());
+            }
     }
-	
-	private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder) {
+    
+    private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder, Graphics g) {
 		for (HashMap.Entry<Integer, Integer> entry : chuteLadder.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
 			Point end = tileCoordinates.get(entry.getValue());
