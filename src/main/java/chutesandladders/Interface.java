@@ -58,7 +58,7 @@ public class Interface extends JPanel {
 		paintChutesAndLadders(GameBoard.ladders);
 	}
 	
-	public void drawBoard() {
+	private void drawBoard(Graphics g) {
 		g.setColor(Color.BLACK);
 		
 		int startX = 35; // Initial X position
@@ -112,7 +112,6 @@ public class Interface extends JPanel {
                 drawPlayers(g, control.getPlayerList());
             }
     }
-    
     private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder, Graphics g) {
 		for (HashMap.Entry<Integer, Integer> entry : chuteLadder.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
