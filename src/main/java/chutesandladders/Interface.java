@@ -14,48 +14,58 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Interface extends JPanel {
-	GameBoard board;
-	Control control;
 	JButton rollButton; // Declare roll button as a class-level field
-	private Graphics g;
+	private JPanel mainPanel;
+	private final Control control;
+	private final HashMap<Integer, Point> tileCoordinates = new HashMap<>();
 	
-	static HashMap<Integer, Point> tileCoordinates = new HashMap<>();
-	
-	public Interface(GameBoard inputBoard, Control inControl) {
-		this.board = inputBoard;
-		this.control = inControl;
-		// HashMap to store center coordinates of each tile
-		HashMap<Integer, Point> tileCoordinates = Interface.tileCoordinates;  // Get tile coordinates
-		// Initialize the roll button
-        rollButton = new JButton("ROLL");
-        rollButton.setVisible(false);
-		// Add action listener only once
-        rollButton.addActionListener(event -> control.playTurn());
-        add(rollButton);
+	public Interface(GameBoard board, Control control, JFrame frame) {
+		this.control = control;
+		// Initialize components and configure frame if needed
+		initializeFrame(frame);
+		initializeComponents(frame);
+		renderBoard(); // Call renderBoard to add the game board panel
+		frame.setVisible(true); // Set frame visibility to true
 	}
 	
-	@Override
-	// Render the game board using Swing graphics
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		this.g = g;
+	private void initializeFrame(JFrame frame) {
+		frame.setMinimumSize(new Dimension(800, 700));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1000, 700); // Set initial size to a larger dimension
+		frame.setResizable(true); // Allow frame to be resizable
+		frame.setLocationRelativeTo(null); // Center the frame on the screen
+		frame.setVisible(true);
+	}
+	
+	private void initializeComponents(JFrame frame) {
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new BorderLayout());
 		
-		// Render the Board
-		drawBoard();
-
-		// Render the "ROLL" button and the dice box
-		drawDiceBox(rollButton);
-
-		renderPlayers(control.getPlayerList());
+		// Initialize the roll button
+		rollButton = new JButton("ROLL");
+		rollButton.addActionListener(event -> control.playTurn());
 		
-		// THESE FUNCTIONS ALWAYS CALLED LAST
-		// Draw chutes
-		g.setColor(Color.RED);
-		paintChutesAndLadders(GameBoard.chutes);
+		// Add the roll button to a panel at the bottom
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(rollButton);
 		
-		// Draw ladders
-		g.setColor(Color.GREEN);
-		paintChutesAndLadders(GameBoard.ladders);
+		// Add the main panel and button panel to the frame
+		frame.add(mainPanel, BorderLayout.CENTER);
+		frame.add(buttonPanel, BorderLayout.SOUTH);
+	}
+	
+	
+	public void renderBoard() {
+		JPanel boardPanel = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				drawBoard(g);
+				drawPlayers(g, control.getPlayerList());
+				// drawDiceBox(rollButton, g);
+			}
+		};
+		mainPanel.add(boardPanel, BorderLayout.CENTER);
 	}
 	
 	private void drawBoard(Graphics g) {
@@ -96,23 +106,31 @@ public class Interface extends JPanel {
 		
 		// Draw border around the board
 		g.drawRect(35, 35, 10 * 50, 10 * 50);
+		
+		// Draw chutes
+		g.setColor(Color.RED);
+		paintChutesAndLadders(GameBoard.chutes, g);
+		
+		// Draw ladders
+		g.setColor(Color.GREEN);
+		paintChutesAndLadders(GameBoard.ladders, g);
 	}
-
-	private void drawDiceBox(JButton button) {
+	
+	private void drawDiceBox(JButton button, Graphics g) {
 		g.setColor(Color.BLACK);
-        int centerX = 670;
-        int centerY = 400;
-        button.setBounds(centerX - 50, centerY + 75, 100, 50);
-        button.setVisible(true);
-        g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
-        g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
-        g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
-        g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
-                drawBoard(g);
-                drawPlayers(g, control.getPlayerList());
-            }
-    }
-    private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder, Graphics g) {
+		int centerX = 670;
+		int centerY = 400;
+		button.setBounds(centerX - 50, centerY + 75, 100, 50);
+		button.setVisible(true);
+		g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
+		g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
+		g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
+		g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
+		drawBoard(g);
+		drawPlayers(g, control.getPlayerList());
+	}
+	
+	private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder, Graphics g) {
 		for (HashMap.Entry<Integer, Integer> entry : chuteLadder.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());
 			Point end = tileCoordinates.get(entry.getValue());
@@ -146,9 +164,8 @@ public class Interface extends JPanel {
 		}
 	}
 	
-	public void close(JFrame frame) {
+	public void close() {
 		System.out.println("WINNER");
 		System.exit(0);
 	}
-	
 }
