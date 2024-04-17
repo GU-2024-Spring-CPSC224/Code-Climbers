@@ -21,7 +21,16 @@ public class Control {
     private Player activePlayer;
 
     public Control(List<Player> inList) {
-        playerList = inList;        
+        playerList = inList;
+        frame = new JFrame("Chutes and Ladders");
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (UI != null) {
+                    UI.renderPlayers(); // Repaint UI components on resize
+                }
+            }
+        });
     }
 
     public void executeGame() {
