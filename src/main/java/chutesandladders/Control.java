@@ -10,17 +10,29 @@
 package chutesandladders;
 
 import javax.swing.JFrame;
-import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.List;
 
 public class Control {
     private final GameBoard board = new GameBoard();
     private Interface UI;
-	private final List<Player> playerList;
+    private final List<Player> playerList;
     private Player activePlayer;
+    private final JFrame frame; // Initialize the JFrame
+    boolean gameOver = false;
 
     public Control(List<Player> inList) {
-        playerList = inList;        
+        playerList = inList;
+        frame = new JFrame("Chutes and Ladders");
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (UI != null) {
+                    UI.renderPlayers(); // Repaint UI components on resize
+                }
+            }
+        });
     }
 
     public void executeGame() {
@@ -28,42 +40,42 @@ public class Control {
     }
 
     public void startGame() {
-        System.out.println(GameBoard.chutes);
-        System.out.println(GameBoard.ladders);
-        createUI(board);
+        createUI(frame); // Pass the JFrame instance to the createUI method
         playGame();
     }
 
     public void playGame() {
-        boolean gameOver = false;
         activePlayer = playerList.get(0);
     }
-      
+
     public void endGame() {
-          
+        UI.close();
     }
 
     public void playTurn() {
         activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
-        UI.repaint();
-    }
-
-    public GameBoard getBoard() {
-        return board;
-    }
-
-    private void createUI(GameBoard board) {
-        UI = new Interface(board, this);
-	    JFrame frame = new JFrame("Chutes and Ladders");
-        frame.setMinimumSize(new Dimension(800, 600));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(UI);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        UI.renderPlayers();
+        gameOverCheck();
     }
     
-    List <Player> getPlayerList() {
+    private void gameOverCheck() {
+        for (Player player : playerList) {
+            int position = player.getCurrentPosition();
+	        if (position == 100) {
+		        gameOver = true;
+                endGame();
+		        break;
+	        }
+        }
+    }
+
+    private void createUI(JFrame frame) {
+        UI = new Interface(this, frame);
+        frame.add(UI);
+        frame.pack();
+    }
+
+    List<Player> getPlayerList() {
         return playerList;
     }
 }

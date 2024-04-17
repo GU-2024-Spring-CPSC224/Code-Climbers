@@ -9,14 +9,15 @@
  */
 package chutesandladders;
 
+import java.awt.*;
+
 public class Player {
     private String name;
 	public int currentPosition;
     private static int playercount;
     private final Integer playerID;
-    private static final Die die = new Die(6, 6);
-    
-    /**
+	
+	/**
      * Initializes a new player with the given name.
      *
      * @param name The name of the player.
@@ -47,6 +48,9 @@ public class Player {
         return playerID;
     }
 
+    public Color getColor() {
+        return Color.blue;
+    }
 
     
     /**
