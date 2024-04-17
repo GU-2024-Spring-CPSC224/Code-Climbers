@@ -61,15 +61,15 @@ public class Interface extends JPanel {
 	public void drawBoard() {
 		g.setColor(Color.BLACK);
 		
-		int startX = 35;  // Initial X position
-		int startY = 35;  // Initial Y position
-		int cellSize = 50;  // Size of each cell
-		FontMetrics fm = g.getFontMetrics();  // Get font metrics to a center text
+		int startX = 35; // Initial X position
+		int startY = 35; // Initial Y position
+		int cellSize = 50; // Size of each cell
+		FontMetrics fm = g.getFontMetrics(); // Get font metrics to center the text
 		
 		for (int i = 1; i <= 100; i++) {
 			// Calculate the position based on the current number
-			int row = 9 - (i - 1) / 10;  // Reverse the row order
-			int col = (row % 2 == 0) ? ((100 - i) % 10) : (9 - ((100 - i) % 10));  // Column number
+			int row = 9 - (i - 1) / 10; // Reverse the row order
+			int col = (row % 2 == 0) ? ((100 - i) % 10) : (9 - ((100 - i) % 10)); // Column number
 			
 			int x = startX + col * cellSize;
 			int y = startY + row * cellSize;

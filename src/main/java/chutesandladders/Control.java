@@ -16,7 +16,7 @@ import java.util.List;
 public class Control {
     private final GameBoard board = new GameBoard();
     private Interface UI;
-	private final List<Player> playerList;
+    private final List<Player> playerList;
     private Player activePlayer;
 
     public Control(List<Player> inList) {
@@ -38,7 +38,7 @@ public class Control {
         boolean gameOver = false;
         activePlayer = playerList.get(0);
     }
-      
+
     public void endGame() {
         UI.close(frame);
     }
@@ -74,8 +74,8 @@ public class Control {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-    
-    List <Player> getPlayerList() {
+
+    List<Player> getPlayerList() {
         return playerList;
     }
 }
