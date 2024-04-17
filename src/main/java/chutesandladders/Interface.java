@@ -121,14 +121,29 @@ public class Interface extends JPanel {
 			g.drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(), (int) end.getY());
 		}
 	}
-
-	public void renderPlayers(List<Player> playerList) {
+	
+	public void renderPlayers() {
+		mainPanel.repaint(); // Repaint the board panel to update player rendering
+	}
+	
+	private void drawPlayers(Graphics g, List<Player> playerList) {
 		for (Player player : playerList) {
-			int position = player.currentPosition;
-			int x1 = (int) tileCoordinates.get(position).getX() - (25 / 2);
-			int y1 = (int) tileCoordinates.get(position).getY() - (25 / 2);
-			g.setColor(Color.BLACK);
-			g.drawRect(x1, y1, 25, 25);
+			int position = player.getCurrentPosition();
+			Point playerPosition = tileCoordinates.get(position);
+			if (playerPosition != null) {
+				// Calculate the center of the tile where the player is located
+				int x = (int) playerPosition.getX();
+				int y = (int) playerPosition.getY();
+				
+				// Adjust player position based on the size of the tile
+				int playerSize = 20; // Size of the player representation
+				int playerX = x - playerSize / 2;
+				int playerY = y - playerSize / 2;
+				
+				// Draw the player as a filled circle
+				g.setColor(player.getColor());
+				g.fillOval(playerX, playerY, playerSize, playerSize);
+			}
 		}
 	}
 	

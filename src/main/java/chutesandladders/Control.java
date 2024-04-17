@@ -55,7 +55,7 @@ public class Control {
 
     public void playTurn() {
         activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
-        UI.repaint();
+        UI.renderPlayers();
         gameOverCheck();
     }
     
