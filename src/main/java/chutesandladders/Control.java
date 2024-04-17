@@ -40,12 +40,24 @@ public class Control {
     }
       
     public void endGame() {
-          
+        UI.close(frame);
     }
 
     public void playTurn() {
         activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
         UI.repaint();
+        gameOverCheck();
+    }
+    
+    private void gameOverCheck() {
+        for (Player player : playerList) {
+            int position = player.getCurrentPosition();
+	        if (position == 100) {
+		        gameOver = true;
+                endGame();
+		        break;
+	        }
+        }
     }
 
     public GameBoard getBoard() {

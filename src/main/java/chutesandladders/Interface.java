@@ -3,7 +3,7 @@
  * CPSC 224, Spring 2024
  * Final Project
  * Sources: N/A
- * 
+ *
  * @author William Garlington, Steve Deibert
  * @version 1.0
  */
@@ -131,4 +131,10 @@ public class Interface extends JPanel {
 			g.drawRect(x1, y1, 25, 25);
 		}
 	}
+	
+	public void close(JFrame frame) {
+		System.out.println("WINNER");
+		System.exit(0);
+	}
+	
 }
