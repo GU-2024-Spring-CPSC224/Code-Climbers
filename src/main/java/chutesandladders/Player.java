@@ -9,6 +9,8 @@
  */
 package chutesandladders;
 
+import java.awt.*;
+
 public class Player {
     private String name;
 	public int currentPosition;
@@ -47,6 +49,9 @@ public class Player {
         return playerID;
     }
 
+    public Color getColor() {
+        return Color.blue;
+    }
 
     
     /**
