@@ -51,7 +51,7 @@ public class Interface extends JPanel {
 		
 		// Add the main panel and button panel to the frame
 		frame.add(mainPanel, BorderLayout.CENTER);
-		frame.add(buttonPanel, BorderLayout.SOUTH);
+		frame.add(buttonPanel, BorderLayout.EAST);
 	}
 	
 	
