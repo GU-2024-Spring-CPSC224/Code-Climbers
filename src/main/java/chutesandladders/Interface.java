@@ -48,9 +48,13 @@ public class Interface extends JPanel {
 		// Add the roll button to a panel at the bottom
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(rollButton);
+
+		// Add panel for scoreboard
+		JPanel scoreBoardPanel = new JPanel();
 		
 		// Add the main panel and button panel to the frame
 		frame.add(mainPanel, BorderLayout.CENTER);
+		frame.add(scoreBoardPanel, BorderLayout.EAST);
 		frame.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
@@ -62,6 +66,7 @@ public class Interface extends JPanel {
 				super.paintComponent(g);
 				drawBoard(g);
 				drawPlayers(g, control.getPlayerList());
+				drawScorebaord(g, control.getPlayerList());
 				// drawDiceBox(rollButton, g);
 			}
 		};
@@ -169,7 +174,9 @@ public class Interface extends JPanel {
 	}
 
 	private void drawScorebaord(Graphics g, List<Player> playerList) {
-		
+		for (Player player : playerList) {
+
+		}
 	}
 	
 	public void close() {
