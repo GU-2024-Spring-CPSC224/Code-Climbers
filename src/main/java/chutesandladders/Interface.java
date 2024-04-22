@@ -163,6 +163,14 @@ public class Interface extends JPanel {
 			}
 		}
 	}
+
+	public void renderScoreboard() {
+		mainPanel.repaint();
+	}
+
+	private void drawScorebaord(Graphics g, List<Player> playerList) {
+		
+	}
 	
 	public void close() {
 		System.out.println("WINNER");
