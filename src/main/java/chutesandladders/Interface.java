@@ -58,7 +58,6 @@ public class Interface extends JPanel {
 		frame.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
-	
 	public void renderBoard() {
 		JPanel boardPanel = new JPanel() {
 			@Override
@@ -174,8 +173,15 @@ public class Interface extends JPanel {
 	}
 
 	private void drawScorebaord(Graphics g, List<Player> playerList) {
+		Font scoreBoardFont = new Font("Comic Sans MS", Font.BOLD, 24);
+		g.setColor(Color.BLACK);
+		int xcen = 550;
+		int ycen = 35;
+		g.setFont(scoreBoardFont);
+		char test[] = {'A','B', 'C'};
 		for (Player player : playerList) {
-
+			g.drawRect(xcen, ycen, 200, 75);
+			g.drawChars(test, 0, test.length, xcen + 35, ycen + 35);
 		}
 	}
 	
