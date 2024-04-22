@@ -173,15 +173,19 @@ public class Interface extends JPanel {
 	}
 
 	private void drawScorebaord(Graphics g, List<Player> playerList) {
-		Font scoreBoardFont = new Font("Comic Sans MS", Font.BOLD, 24);
+		Font scoreBoardFont = new Font("Comic Sans MS", Font.BOLD, 20);
 		g.setColor(Color.BLACK);
 		int xcen = 550;
 		int ycen = 35;
+		int i = 0;
 		g.setFont(scoreBoardFont);
-		char test[] = {'A','B', 'C'};
 		for (Player player : playerList) {
-			g.drawRect(xcen, ycen, 200, 75);
-			g.drawChars(test, 0, test.length, xcen + 35, ycen + 35);
+			int y = ycen + (i * 60);
+			char nameChars[] = playerList.get(i).getPlayerName().toCharArray();
+			char posChars[] = String.valueOf(playerList.get(i).getCurrentPosition()).toCharArray();
+			g.drawRect(xcen, y, 200, 60);
+			g.drawChars(nameChars, 0, nameChars.length, xcen + 5, y + 40);
+			g.drawChars(posChars, 0, posChars.length, xcen + 150, y + 40);
 		}
 	}
 	
