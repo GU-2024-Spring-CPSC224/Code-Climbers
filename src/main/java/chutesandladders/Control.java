@@ -19,7 +19,9 @@ public class Control {
     private Interface UI;
     private final List<Player> playerList;
     private Player activePlayer;
+    private int activeNumber  = 0;
     private final JFrame frame; // Initialize the JFrame
+    private int playerNum;
     boolean gameOver = false;
 
     public Control(List<Player> inList) {
@@ -33,6 +35,7 @@ public class Control {
                 }
             }
         });
+        playerNum = setPlayerNum();
     }
 
     public void executeGame() {
@@ -45,7 +48,7 @@ public class Control {
     }
 
     public void playGame() {
-        activePlayer = playerList.get(0);
+        activePlayer = playerList.get(activeNumber);
     }
 
     public void endGame() {
@@ -56,6 +59,7 @@ public class Control {
         activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
         UI.renderPlayers();
         gameOverCheck();
+        advanceActivePlayer();
     }
     
     private void gameOverCheck() {
@@ -77,5 +81,28 @@ public class Control {
 
     List<Player> getPlayerList() {
         return playerList;
+    }
+
+    public int getPlayerNum() {
+        return playerNum;
+    }
+
+    private void advanceActivePlayer() {
+        if ((playerNum - 1) == activeNumber) {
+            //cur player is last in list
+            activeNumber = 0;
+        } else {
+            activeNumber++;
+        }
+        activePlayer = playerList.get(activeNumber);
+    }
+
+    private int setPlayerNum() {
+        int playerCount = 0;
+
+        for (Player player : playerList) {
+            playerCount++;
+        }
+        return playerCount;
     }
 }

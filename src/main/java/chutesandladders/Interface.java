@@ -152,24 +152,49 @@ public class Interface extends JPanel {
 	}
 	
 	private void drawPlayers(Graphics g, List<Player> playerList) {
-		for (Player player : playerList) {
-			int position = player.getCurrentPosition();
-			Point playerPosition = tileCoordinates.get(position);
-			if (playerPosition != null) {
-				// Calculate the center of the tile where the player is located
-				int x = (int) playerPosition.getX();
-				int y = (int) playerPosition.getY();
+		switch (control.getPlayerNum()) {
+			case 4:
+				break;
+			case 3:
+				break;
+			case 2:
+				break;
+			default:
+				render1P(g, playerList);
+				break;
+		}		
+	}
+
+	private void render1P(Graphics g,  List<Player> playerList) {
+		Player player = playerList.get(0);
+		int position = player.getCurrentPosition();
+		Point playerPosition = tileCoordinates.get(position);
+		if (playerPosition != null) {
+			// Calculate the center of the tile where the player is located
+			int x = (int) playerPosition.getX();
+			int y = (int) playerPosition.getY();
 				
-				// Adjust player position based on the size of the tile
-				int playerSize = 20; // Size of the player representation
-				int playerX = x - playerSize / 2;
-				int playerY = y - playerSize / 2;
+			// Adjust player position based on the size of the tile
+			int playerSize = 20; // Size of the player representation
+			int playerX = x - playerSize / 2;
+			int playerY = y - playerSize / 2;
 				
-				// Draw the player as a filled circle
-				g.setColor(player.getColor());
-				g.fillOval(playerX, playerY, playerSize, playerSize);
-			}
+			// Draw the player as a filled circle
+			g.setColor(player.getColor());
+			g.fillOval(playerX, playerY, playerSize, playerSize);
 		}
+	}
+
+	private void render2P(Graphics g) {
+		
+	}
+
+	private void render3P(Graphics g) {
+		
+	}
+
+	private void render4P(Graphics g) {
+		
 	}
 
 	public void renderScoreboard() {
@@ -190,6 +215,7 @@ public class Interface extends JPanel {
 			g.drawRect(xcen, y, 200, 60);
 			g.drawChars(nameChars, 0, nameChars.length, xcen + 5, y + 40);
 			g.drawChars(posChars, 0, posChars.length, xcen + 150, y + 40);
+			i++;
 		}
 	}
 	
@@ -230,7 +256,13 @@ class PlayerSelectionGUI extends JFrame {
                     playerList.add(new Player("Player " + (i + 1)));
                 }
                 Control control = new Control(playerList);
-                control.executeGame();
+				System.out.println("TEST 1");
+				for (Player player : control.getPlayerList()) {
+					System.out.println(player.getPlayerName());
+				}
+                
+				
+				control.executeGame();
                 dispose(); // Close the player selection GUI
             }
         });
