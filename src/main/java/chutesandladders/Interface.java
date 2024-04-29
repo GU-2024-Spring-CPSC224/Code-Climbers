@@ -10,6 +10,9 @@
 package chutesandladders;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,6 +59,7 @@ public class Interface extends JPanel {
 		frame.add(mainPanel, BorderLayout.CENTER);
 		frame.add(scoreBoardPanel, BorderLayout.EAST);
 		frame.add(buttonPanel, BorderLayout.SOUTH);
+
 	}
 	
 	public void renderBoard() {
@@ -193,4 +197,48 @@ public class Interface extends JPanel {
 		System.out.println("WINNER");
 		System.exit(0);
 	}
+}
+
+class PlayerSelectionGUI extends JFrame {
+	private final JComboBox<Integer> playerCountComboBox;
+
+    public PlayerSelectionGUI() {
+        setTitle("Chutes and Ladders");
+        setSize(300, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Center the frame on the screen
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(2, 1));
+
+        JPanel playerCountPanel = new JPanel();
+        playerCountPanel.add(new JLabel("Select number of players:"));
+        playerCountComboBox = new JComboBox<>();
+        for (int i = 1; i <= 4; i++) {
+            playerCountComboBox.addItem(i);
+        }
+        playerCountPanel.add(playerCountComboBox);
+
+        JPanel buttonPanel = new JPanel();
+	    JButton startButton = new JButton("Start Game");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int playerCount = (int) playerCountComboBox.getSelectedItem();
+                List<Player> playerList = new ArrayList<>();
+                for (int i = 0; i < playerCount; i++) {
+                    playerList.add(new Player("Player " + (i + 1)));
+                }
+                Control control = new Control(playerList);
+                control.executeGame();
+                dispose(); // Close the player selection GUI
+            }
+        });
+        buttonPanel.add(startButton);
+
+        mainPanel.add(playerCountPanel);
+        mainPanel.add(buttonPanel);
+
+        add(mainPanel);
+    }
 }
