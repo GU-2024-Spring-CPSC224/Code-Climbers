@@ -16,6 +16,7 @@ public class Player {
 	public int currentPosition;
     private static int playercount;
     private final Integer playerID;
+    private Color myColor;
 	
 	/**
      * Initializes a new player with the given name.
@@ -30,6 +31,7 @@ public class Player {
         this.name = name;
         this.currentPosition = 1;
 	    playerID = playercount;
+        assignColor();
     }
     
     // Getter and Setter methods
@@ -49,7 +51,27 @@ public class Player {
     }
 
     public Color getColor() {
-        return Color.blue;
+        return myColor;
+    }
+
+    private void assignColor() {
+        switch (playerID) {
+            case 1:
+                myColor = Color.GREEN;
+                break;
+            case 2:
+                myColor = Color.ORANGE;
+                break;
+            case 3:
+                myColor = Color.MAGENTA;
+                break;
+            case 4:
+                myColor = Color.BLUE;
+                break;
+            default:
+                myColor = Color.LIGHT_GRAY;
+                break;
+        }
     }
 
     
