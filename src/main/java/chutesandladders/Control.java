@@ -31,7 +31,7 @@ public class Control {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				if (UI != null) {
-					UI.renderPlayers(); // Repaint UI components on resize
+					UI.renderUpdate(); // Repaint UI components on resize
 				}
 			}
 		});
@@ -57,7 +57,7 @@ public class Control {
 	
 	public void playTurn() {
 		activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
-		UI.renderPlayers();
+		UI.renderUpdate();
 		gameOverCheck();
 		advanceActivePlayer();
 	}
