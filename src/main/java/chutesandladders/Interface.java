@@ -152,6 +152,7 @@ public class Interface extends JPanel {
 	}
 	
 	private void drawPlayers(Graphics g, List<Player> playerList) {
+		int offSet = 0;
 		for (Player player : playerList) {
 			int position = player.getCurrentPosition();
 			Point playerPosition = tileCoordinates.get(position);
@@ -160,16 +161,46 @@ public class Interface extends JPanel {
 				int x = (int) playerPosition.getX();
 				int y = (int) playerPosition.getY();
 				
+
+				for (Player others : playerList) {
+					if ((tileCoordinates.get(others.getCurrentPosition()) == playerPosition) && (others != player)) {
+						///other player in postition
+						offSet++;
+						break;
+					}
+				}
+
 				// Adjust player position based on the size of the tile
 				int playerSize = 20; // Size of the player representation
 				int playerX = x - playerSize / 2;
 				int playerY = y - playerSize / 2;
-				
+
+				switch (offSet) {
+					case 1:
+						playerX = playerX - 10;
+						playerY = playerY - 10;
+						break;
+					case 2:
+						playerX = playerX + 10;
+						playerY = playerY - 10;
+						break;
+					case 3:
+						playerX = playerX - 10;
+						playerY = playerY + 10;
+						break;
+					case 4:
+						playerX = playerX + 10;
+						playerY = playerY + 10;
+						break;
+					default:
+						break;
+				}
 				// Draw the player as a filled circle
 				g.setColor(player.getColor());
 				g.fillOval(playerX, playerY, playerSize, playerSize);
+				
 			}
-		}
+		}	
 	}
 
 	public void renderScoreboard() {
@@ -190,6 +221,7 @@ public class Interface extends JPanel {
 			g.drawRect(xcen, y, 200, 60);
 			g.drawChars(nameChars, 0, nameChars.length, xcen + 5, y + 40);
 			g.drawChars(posChars, 0, posChars.length, xcen + 150, y + 40);
+			i++;
 		}
 	}
 	
@@ -229,8 +261,9 @@ class PlayerSelectionGUI extends JFrame {
                 for (int i = 0; i < playerCount; i++) {
                     playerList.add(new Player("Player " + (i + 1)));
                 }
-                Control control = new Control(playerList);
-                control.executeGame();
+                Control control = new Control(playerList);             
+				
+				control.executeGame();
                 dispose(); // Close the player selection GUI
             }
         });
