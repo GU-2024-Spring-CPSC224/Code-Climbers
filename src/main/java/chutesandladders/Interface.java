@@ -51,12 +51,16 @@ public class Interface extends JPanel {
 		// Add the roll button to a panel at the bottom
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(rollButton);
+
+		// Add panel for scoreboard
+		JPanel scoreBoardPanel = new JPanel();
 		
 		// Add the main panel and button panel to the frame
 		frame.add(mainPanel, BorderLayout.CENTER);
-		frame.add(buttonPanel, BorderLayout.EAST);
+		frame.add(scoreBoardPanel, BorderLayout.EAST);
+		frame.add(buttonPanel, BorderLayout.SOUTH);
+
 	}
-	
 	
 	public void renderBoard() {
 		JPanel boardPanel = new JPanel() {
@@ -65,6 +69,7 @@ public class Interface extends JPanel {
 				super.paintComponent(g);
 				drawBoard(g);
 				drawPlayers(g, control.getPlayerList());
+				drawScorebaord(g, control.getPlayerList());
 				// drawDiceBox(rollButton, g);
 			}
 		};
@@ -164,6 +169,27 @@ public class Interface extends JPanel {
 				g.setColor(player.getColor());
 				g.fillOval(playerX, playerY, playerSize, playerSize);
 			}
+		}
+	}
+
+	public void renderScoreboard() {
+		mainPanel.repaint();
+	}
+
+	private void drawScorebaord(Graphics g, List<Player> playerList) {
+		Font scoreBoardFont = new Font("Comic Sans MS", Font.BOLD, 20);
+		g.setColor(Color.BLACK);
+		int xcen = 550;
+		int ycen = 35;
+		int i = 0;
+		g.setFont(scoreBoardFont);
+		for (Player player : playerList) {
+			int y = ycen + (i * 60);
+			char nameChars[] = playerList.get(i).getPlayerName().toCharArray();
+			char posChars[] = String.valueOf(playerList.get(i).getCurrentPosition()).toCharArray();
+			g.drawRect(xcen, y, 200, 60);
+			g.drawChars(nameChars, 0, nameChars.length, xcen + 5, y + 40);
+			g.drawChars(posChars, 0, posChars.length, xcen + 150, y + 40);
 		}
 	}
 	
