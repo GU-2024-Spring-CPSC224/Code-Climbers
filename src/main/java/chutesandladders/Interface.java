@@ -8,6 +8,7 @@
  * @version 1.0
  */
 package chutesandladders;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -147,10 +148,6 @@ public class Interface extends JPanel {
 		}
 	}
 	
-	public void renderPlayers() {
-		mainPanel.repaint(); // Repaint the board panel to update player rendering
-	}
-	
 	private void drawPlayers(Graphics g, List<Player> playerList) {
 		int offSet = 0;
 		for (Player player : playerList) {
@@ -200,11 +197,7 @@ public class Interface extends JPanel {
 				g.fillOval(playerX, playerY, playerSize, playerSize);
 				
 			}
-		}	
-	}
-
-	public void renderScoreboard() {
-		mainPanel.repaint();
+		}
 	}
 
 	private void drawScorebaord(Graphics g, List<Player> playerList) {
@@ -216,8 +209,8 @@ public class Interface extends JPanel {
 		g.setFont(scoreBoardFont);
 		for (Player player : playerList) {
 			int y = ycen + (i * 60);
-			char nameChars[] = playerList.get(i).getPlayerName().toCharArray();
-			char posChars[] = String.valueOf(playerList.get(i).getCurrentPosition()).toCharArray();
+			char[] nameChars = playerList.get(i).getPlayerName().toCharArray();
+			char[] posChars = String.valueOf(playerList.get(i).getCurrentPosition()).toCharArray();
 			g.drawRect(xcen, y, 200, 60);
 			g.drawChars(nameChars, 0, nameChars.length, xcen + 5, y + 40);
 			g.drawChars(posChars, 0, posChars.length, xcen + 150, y + 40);
@@ -228,6 +221,10 @@ public class Interface extends JPanel {
 	public void close() {
 		System.out.println("WINNER");
 		System.exit(0);
+	}
+	
+	public void renderUpdate() {
+		mainPanel.repaint(); // Repaint the main panel
 	}
 }
 
@@ -250,28 +247,33 @@ class PlayerSelectionGUI extends JFrame {
             playerCountComboBox.addItem(i);
         }
         playerCountPanel.add(playerCountComboBox);
-
-        JPanel buttonPanel = new JPanel();
-	    JButton startButton = new JButton("Start Game");
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int playerCount = (int) playerCountComboBox.getSelectedItem();
-                List<Player> playerList = new ArrayList<>();
-                for (int i = 0; i < playerCount; i++) {
-                    playerList.add(new Player("Player " + (i + 1)));
-                }
-                Control control = new Control(playerList);             
-				
-				control.executeGame();
-                dispose(); // Close the player selection GUI
-            }
-        });
-        buttonPanel.add(startButton);
-
-        mainPanel.add(playerCountPanel);
+	    
+	    JPanel buttonPanel = createButtonPanel();
+	    
+	    mainPanel.add(playerCountPanel);
         mainPanel.add(buttonPanel);
 
         add(mainPanel);
     }
+	
+	JPanel createButtonPanel() {
+		JPanel buttonPanel = new JPanel();
+		JButton startButton = new JButton("Start Game");
+		startButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        int playerCount = (int) playerCountComboBox.getSelectedItem();
+		        List<Player> playerList = new ArrayList<>();
+		        for (int i = 0; i < playerCount; i++) {
+		            playerList.add(new Player("Player " + (i + 1)));
+		        }
+		        Control control = new Control(playerList);
+						
+						control.executeGame();
+		        dispose(); // Close the player selection GUI
+		    }
+		});
+		buttonPanel.add(startButton);
+		return buttonPanel;
+	}
 }
