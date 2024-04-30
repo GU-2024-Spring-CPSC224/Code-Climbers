@@ -22,6 +22,8 @@ public class Interface extends JPanel {
 	private JPanel mainPanel;
 	private final Control control;
 	private final HashMap<Integer, Point> tileCoordinates = new HashMap<>();
+
+	private int rollValue = 0;
 	
 	public Interface(Control control, JFrame frame) {
 		this.control = control;
@@ -71,6 +73,8 @@ public class Interface extends JPanel {
 				drawBoard(g);
 				drawPlayers(g, control.getPlayerList());
 				drawScorebaord(g, control.getPlayerList());
+				drawDiceValue(g);
+				drawDiceBox(g);
 				// drawDiceBox(rollButton, g);
 			}
 		};
@@ -79,6 +83,8 @@ public class Interface extends JPanel {
 	
 	private void drawBoard(Graphics g) {
 		g.setColor(Color.BLACK);
+		Font mainBoardFont = new Font("Comic Sans MS", Font.BOLD, 17);
+		g.setFont(mainBoardFont);
 		
 		int startX = 35; // Initial X position
 		int startY = 35; // Initial Y position
@@ -125,20 +131,31 @@ public class Interface extends JPanel {
 		paintChutesAndLadders(GameBoard.ladders, g);
 	}
 	
-	private void drawDiceBox(JButton button, Graphics g) {
+	private void drawDiceBox(Graphics g) {
 		g.setColor(Color.BLACK);
 		int centerX = 670;
 		int centerY = 400;
-		button.setBounds(centerX - 50, centerY + 75, 100, 50);
-		button.setVisible(true);
-		g.drawLine(centerX - 75, centerY - 75, centerX + 75, centerY - 75); //bottom line
-		g.drawLine(centerX - 75, centerY + 75, centerX + 75, centerY + 75); //top line
-		g.drawLine(centerX - 75, centerY - 75, centerX - 75, centerY + 75); //left line
-		g.drawLine(centerX + 75, centerY - 75, centerX + 75, centerY + 75); //right line
+		g.drawLine(centerX - 50, centerY - 50, centerX + 50, centerY - 50); //bottom line
+		g.drawLine(centerX - 50, centerY + 50, centerX + 50, centerY + 50); //top line
+		g.drawLine(centerX - 50, centerY - 50, centerX - 50, centerY + 50); //left line
+		g.drawLine(centerX + 50, centerY - 50, centerX + 50, centerY + 50); //right line
 		drawBoard(g);
 		drawPlayers(g, control.getPlayerList());
 	}
+
+	public void drawDiceValue(Graphics g) {
+		int centerX = 670;
+		int centerY = 400;
+		char[] diceVal = String.valueOf(rollValue).toCharArray();
+		Font diceValFont = new Font("Comic Sans MS", Font.BOLD, 70);
+		g.setFont(diceValFont);
+		g.drawChars(diceVal, 0, diceVal.length, centerX - 20, centerY + 25);
+	}
 	
+	public void updateRollValue(int inVal) {
+		rollValue = inVal;
+	}
+
 	private void paintChutesAndLadders(HashMap<Integer, Integer> chuteLadder, Graphics g) {
 		for (HashMap.Entry<Integer, Integer> entry : chuteLadder.entrySet()) {
 			Point start = tileCoordinates.get(entry.getKey());

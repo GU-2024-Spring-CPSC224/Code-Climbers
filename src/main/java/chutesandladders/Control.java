@@ -56,7 +56,9 @@ public class Control {
 	}
 	
 	public void playTurn() {
-		activePlayer.setCurrentPosition(board.movePlayer(activePlayer.getCurrentPosition()));
+        int[] inVals = board.movePlayer(activePlayer.getCurrentPosition());
+		activePlayer.setCurrentPosition(inVals[0]);
+        UI.updateRollValue(inVals[1]);
 		UI.renderUpdate();
 		gameOverCheck();
 		advanceActivePlayer();

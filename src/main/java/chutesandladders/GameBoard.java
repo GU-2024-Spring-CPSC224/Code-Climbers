@@ -77,11 +77,14 @@ public class GameBoard {
 	
 	/// ### PLAYER MOVEMENT FUNCTIONS
 	
-	public int movePlayer(int curPos) {
+	public int[] movePlayer(int curPos) {
 		int newPos;
-		curPos += rollDice();
+		int roll;
+		roll = rollDice();
+		curPos += roll;
 		newPos = checkChuteOrLadder(curPos);
-		return newPos;
+		int[] posAndVal = {newPos, roll};
+		return posAndVal;
 	}
 	
 	public int rollDice() {
