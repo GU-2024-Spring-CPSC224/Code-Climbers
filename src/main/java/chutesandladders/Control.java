@@ -84,6 +84,10 @@ public class Control {
 	List<Player> getPlayerList() {
 		return playerList;
 	}
+
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
 	
 	private void advanceActivePlayer() {
 		if ((playerNum - 1) == activeNumber) {

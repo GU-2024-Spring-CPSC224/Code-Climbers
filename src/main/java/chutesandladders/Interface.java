@@ -226,6 +226,11 @@ public class Interface extends JPanel {
 		g.setFont(scoreBoardFont);
 		for (Player player : playerList) {
 			int y = ycen + (i * 60);
+			if (player == control.getActivePlayer()) {
+				g.setColor(Color.YELLOW);
+				g.fillRect(xcen, y, 200, 60);
+				g.setColor(Color.BLACK);
+			}
 			char[] nameChars = playerList.get(i).getPlayerName().toCharArray();
 			char[] posChars = String.valueOf(playerList.get(i).getCurrentPosition()).toCharArray();
 			g.drawRect(xcen, y, 200, 60);
