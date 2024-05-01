@@ -229,6 +229,9 @@ public class Interface extends JPanel {
 				g.fillRect(xcen, y, 200, 60);
 				g.setColor(Color.BLACK);
 			}
+			g.setColor(player.getColor());
+			g.fillRect(xcen + 5, y + 10, 100, 40);
+			g.setColor(Color.BLACK);
 			char[] nameChars = playerList.get(i).getPlayerName().toCharArray();
 			char[] posChars = String.valueOf(playerList.get(i).getCurrentPosition()).toCharArray();
 			g.drawRect(xcen, y, 200, 60);

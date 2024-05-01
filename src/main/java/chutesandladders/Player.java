@@ -57,16 +57,16 @@ public class Player {
 	private void assignColor() {
 		switch (playerID) {
 			case 1:
-				myColor = Color.GREEN;
+				myColor = Color.RED;
 				break;
 			case 2:
-				myColor = Color.ORANGE;
+				myColor = Color.green;
 				break;
 			case 3:
 				myColor = Color.MAGENTA;
 				break;
 			case 4:
-				myColor = Color.BLUE;
+				myColor = Color.getHSBColor(0.55f, 0.7f, 0.8f);
 				break;
 			default:
 				myColor = Color.LIGHT_GRAY;
