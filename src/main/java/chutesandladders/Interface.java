@@ -11,8 +11,6 @@ package chutesandladders;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -178,7 +176,7 @@ public class Interface extends JPanel {
 
 				for (Player others : playerList) {
 					if ((tileCoordinates.get(others.getCurrentPosition()) == playerPosition) && (others != player)) {
-						///other player in postition
+						///another player in postition
 						offSet++;
 						break;
 					}
@@ -281,19 +279,16 @@ class PlayerSelectionGUI extends JFrame {
 	JPanel createButtonPanel() {
 		JPanel buttonPanel = new JPanel();
 		JButton startButton = new JButton("Start Game");
-		startButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        int playerCount = (int) playerCountComboBox.getSelectedItem();
-		        List<Player> playerList = new ArrayList<>();
-		        for (int i = 0; i < playerCount; i++) {
-		            playerList.add(new Player("Player " + (i + 1)));
-		        }
-		        Control control = new Control(playerList);
+		startButton.addActionListener(e -> {
+		    int playerCount = (int) playerCountComboBox.getSelectedItem();
+		    List<Player> playerList = new ArrayList<>();
+		    for (int i = 0; i < playerCount; i++) {
+		        playerList.add(new Player("Player " + (i + 1)));
+		    }
+		    Control control = new Control(playerList);
 						
 						control.executeGame();
-		        dispose(); // Close the player selection GUI
-		    }
+		    dispose(); // Close the player selection GUI
 		});
 		buttonPanel.add(startButton);
 		return buttonPanel;
