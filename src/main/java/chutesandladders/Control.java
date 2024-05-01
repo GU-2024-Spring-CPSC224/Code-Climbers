@@ -66,9 +66,12 @@ public class Control {
             int position = player.getCurrentPosition();
 	        if (position == 100) {
 		        gameOver = true;
-                int option = JOptionPane.showConfirmDialog(frame, "Game over! Do you want to restart?", "Game Over", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(frame,
+		                ("Player " + player.getPlayerID() + " Wins! Do you want to restart?"),
+		                "Game Over", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
-					player.resetPlayerID(); // I know this is terrible and i have no excuses
+					player.resetPlayerID(); // I know this is terrible and I have no excuses - Will
+	                // I take no credit for this crazed man's actions - Steve
                     restartGame();
                 } else {
                     UI.close();
@@ -85,11 +88,6 @@ public class Control {
             PlayerSelectionGUI playerSelectionGUI = new PlayerSelectionGUI();
 			playerSelectionGUI.setVisible(true);
         });
-    }
-    
-    private void closeGame() {
-        frame.dispose(); // Close the current frame
-        System.exit(0); // Exit the program
     }
 	
 	private void createUI(JFrame frame) {
