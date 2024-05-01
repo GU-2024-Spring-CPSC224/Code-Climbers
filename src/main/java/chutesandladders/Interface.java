@@ -131,8 +131,8 @@ public class Interface extends JPanel {
 	
 	private void drawDiceBox(Graphics g) {
 		g.setColor(Color.BLACK);
-		int centerX = 670;
-		int centerY = 400;
+		int centerX = 650;
+		int centerY = 380;
 		g.drawLine(centerX - 50, centerY - 50, centerX + 50, centerY - 50); //bottom line
 		g.drawLine(centerX - 50, centerY + 50, centerX + 50, centerY + 50); //top line
 		g.drawLine(centerX - 50, centerY - 50, centerX - 50, centerY + 50); //left line
@@ -142,8 +142,8 @@ public class Interface extends JPanel {
 	}
 
 	public void drawDiceValue(Graphics g) {
-		int centerX = 670;
-		int centerY = 400;
+		int centerX = 650;
+		int centerY = 380;
 		char[] diceVal = String.valueOf(rollValue).toCharArray();
 		Font diceValFont = new Font("Comic Sans MS", Font.BOLD, 70);
 		g.setFont(diceValFont);
@@ -159,7 +159,9 @@ public class Interface extends JPanel {
 			Point start = tileCoordinates.get(entry.getKey());
 			Point end = tileCoordinates.get(entry.getValue());
 			
-			g.drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(), (int) end.getY());
+			g.drawLine((int) start.getX() +1, (int) start.getY()+2, (int) end.getX()+1, (int) end.getY()+2);
+			g.drawLine((int) start.getX()-2, (int) start.getY()-1, (int) end.getX()-2, (int) end.getY()-1);
+
 		}
 	}
 	
@@ -230,13 +232,14 @@ public class Interface extends JPanel {
 				g.setColor(Color.BLACK);
 			}
 			g.setColor(player.getColor());
-			g.fillRect(xcen + 5, y + 15, 100, 35);
+			g.fillRect(xcen, y, 15, 60);
 			g.setColor(Color.BLACK);
+			g.fillRect(xcen + 10, y, 5, 60);
 			char[] nameChars = playerList.get(i).getPlayerName().toCharArray();
 			char[] posChars = String.valueOf(playerList.get(i).getCurrentPosition()).toCharArray();
 			g.drawRect(xcen, y, 200, 60);
-			g.drawChars(nameChars, 0, nameChars.length, xcen + 15, y + 40);
-			g.drawChars(posChars, 0, posChars.length, xcen + 150, y + 40);
+			g.drawChars(nameChars, 0, nameChars.length, xcen + 25, y + 40);
+			g.drawChars(posChars, 0, posChars.length, xcen + 170, y + 40);
 			i++;
 		}
 	}

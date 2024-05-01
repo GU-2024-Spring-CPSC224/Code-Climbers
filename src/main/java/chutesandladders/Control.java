@@ -68,6 +68,7 @@ public class Control {
 		        gameOver = true;
                 int option = JOptionPane.showConfirmDialog(frame, "Game over! Do you want to restart?", "Game Over", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
+					player.resetPlayerID(); // I know this is terrible and i have no excuses
                     restartGame();
                 } else {
                     UI.close();

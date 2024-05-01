@@ -15,7 +15,7 @@ public class Player {
 	private String name;
 	public int currentPosition;
 	private static int playercount;
-	private final Integer playerID;
+	private static Integer playerID;
 	private Color myColor;
 	
 	/**
@@ -49,26 +49,39 @@ public class Player {
 	public Integer getPlayerID() {
 		return playerID;
 	}
+
+	public void resetPlayerID() {
+		playercount = 0;
+	}
 	
 	public Color getColor() {
 		return myColor;
 	}
 	
 	private void assignColor() {
-		switch (playerID) {
+		switch (playercount) {
 			case 1:
+				System.out.println("THIS IS :" + playercount);
+
 				myColor = Color.RED;
 				break;
 			case 2:
+				System.out.println("THIS IS :" + playercount);
+
 				myColor = Color.green;
 				break;
 			case 3:
+			System.out.println("THIS IS :" + playercount);
+
 				myColor = Color.MAGENTA;
 				break;
 			case 4:
+			System.out.println("THIS IS :" + playercount);
+
 				myColor = Color.getHSBColor(0.55f, 0.7f, 0.8f);
 				break;
 			default:
+				System.out.println("THIS IS :" + playercount);
 				myColor = Color.LIGHT_GRAY;
 				break;
 		}
