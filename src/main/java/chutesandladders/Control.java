@@ -81,7 +81,8 @@ public class Control {
         frame.dispose(); // Close the current frame
         // Restart the program by relaunching the main method
         SwingUtilities.invokeLater(() -> {
-            ChutesAndLadders.main(new String[0]);
+            PlayerSelectionGUI playerSelectionGUI = new PlayerSelectionGUI();
+			playerSelectionGUI.setVisible(true);
         });
     }
     
