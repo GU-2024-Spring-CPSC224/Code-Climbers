@@ -9,9 +9,10 @@
  */
 package chutesandladders;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Control {
@@ -51,10 +52,6 @@ public class Control {
 		activePlayer = playerList.get(activeNumber);
 	}
 	
-	public void endGame() {
-		UI.close();
-	}
-	
 	public void playTurn() {
         int[] inVals = board.movePlayer(activePlayer.getCurrentPosition());
 		activePlayer.setCurrentPosition(inVals[0]);
@@ -65,15 +62,33 @@ public class Control {
 	}
 	
 	private void gameOverCheck() {
-		for (Player player : playerList) {
-			int position = player.getCurrentPosition();
-			if (position == 100) {
-				gameOver = true;
-				endGame();
-				break;
-			}
-		}
-	}
+        for (Player player : playerList) {
+            int position = player.getCurrentPosition();
+	        if (position == 100) {
+		        gameOver = true;
+                int option = JOptionPane.showConfirmDialog(frame, "Game over! Do you want to restart?", "Game Over", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    restartGame();
+                } else {
+                    UI.close();
+                }
+                break;
+	        }
+        }
+    }
+	
+	private void restartGame() {
+        frame.dispose(); // Close the current frame
+        // Restart the program by relaunching the main method
+        SwingUtilities.invokeLater(() -> {
+            ChutesAndLadders.main(new String[0]);
+        });
+    }
+    
+    private void closeGame() {
+        frame.dispose(); // Close the current frame
+        System.exit(0); // Exit the program
+    }
 	
 	private void createUI(JFrame frame) {
 		UI = new Interface(this, frame);
