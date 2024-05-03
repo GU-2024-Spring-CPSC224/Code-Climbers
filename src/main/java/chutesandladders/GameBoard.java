@@ -81,10 +81,13 @@ public class GameBoard {
 		int newPos;
 		int roll;
 		roll = rollDice();
-		curPos += roll;
-		newPos = checkChuteOrLadder(curPos);
-		int[] posAndVal = {newPos, roll};
-		return posAndVal;
+		newPos = roll + curPos;
+		newPos = checkChuteOrLadder(newPos);
+		if (newPos > 100) {
+			// Roll rejected, it has to be a perfect roll to 100
+			newPos = curPos;
+		}
+		return new int[]{newPos, roll};
 	}
 	
 	public int rollDice() {
