@@ -67,7 +67,7 @@ public class Control {
 	        if (position == 100) {
 		        gameOver = true;
                 int option = JOptionPane.showConfirmDialog(frame,
-		                ("Player " + player.getPlayerID() + " Wins! Do you want to restart?"),
+		                (player.getPlayerName() + " Wins! Do you want to restart?"),
 		                "Game Over", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
 					player.resetPlayerID(); // I know this is terrible and I have no excuses - Will
