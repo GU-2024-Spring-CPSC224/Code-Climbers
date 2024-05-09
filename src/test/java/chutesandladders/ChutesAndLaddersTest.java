@@ -10,17 +10,15 @@ import java.util.List;
 public class ChutesAndLaddersTest {
     private GameBoard board;
     private Player player;
-    private Control gameControl;
-    private List<Player> players;
-
-    @BeforeEach
+	
+	@BeforeEach
     void setUp() {
         board = new GameBoard();
-        players = new ArrayList<>(); // Corrected the shadowing issue
-        player = new Player("Test Player");
+		List<Player> players = new ArrayList<>(); // Corrected the shadowing issue
+		player = new Player("Test Player");
         players.add(player);
-        gameControl = new Control(players);
-        // Assume all chutes and ladders are predefined in GameBoard's constructor
+	    new Control(players);
+	    // Assume all chutes and ladders are predefined in GameBoard's constructor
     }
 
     @Test
@@ -39,7 +37,7 @@ public class ChutesAndLaddersTest {
     void noMoveBeyondBoardLimit() {
         player.setCurrentPosition(98); // Set the player close to the end
         board.die1 = new Die(6, 6); // Force the die to roll 6
-        int[] moveResults = board.movePlayer(player.getCurrentPosition());
-        Assertions.assertEquals(98, player.getCurrentPosition(), "Player should not move if roll exceeds board limit.");
+	    board.movePlayer(player.getCurrentPosition());
+	    Assertions.assertEquals(98, player.getCurrentPosition(), "Player should not move if roll exceeds board limit.");
     }
 }
