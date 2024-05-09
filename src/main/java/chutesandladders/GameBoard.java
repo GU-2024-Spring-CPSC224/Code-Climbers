@@ -81,17 +81,8 @@ public class GameBoard {
 		int newPos;
 		int roll;
 		roll = rollDice();
-<<<<<<< Updated upstream
-		newPos = roll + curPos;
-		newPos = checkChuteOrLadder(newPos);
-		if (newPos > 100) {
-			// Roll rejected, it has to be a perfect roll to 100
-			newPos = curPos;
-		}
-=======
 		curPos += roll;
 		newPos = checkChuteOrLadder(curPos);
->>>>>>> Stashed changes
 		return new int[]{newPos, roll};
 	}
 	
