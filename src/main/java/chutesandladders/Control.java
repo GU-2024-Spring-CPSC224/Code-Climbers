@@ -12,7 +12,6 @@ package chutesandladders;
 import javax.swing.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Control {
@@ -117,7 +116,7 @@ public class Control {
 	private int setPlayerNum() {
 		int playerCount = 0;
 		
-		for (Player player : playerList) {
+		for (Player ignored : playerList) {
 			playerCount++;
 		}
 		return playerCount;
