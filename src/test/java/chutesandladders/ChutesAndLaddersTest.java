@@ -32,7 +32,6 @@ public class ChutesAndLaddersTest {
         Assertions.assertTrue(roll >= 1 && roll <= 6, "Die roll should be between 1 and 6.");
     }
 
-
     @Test
     void noMoveBeyondBoardLimit() {
         player.setCurrentPosition(98); // Set the player close to the end
