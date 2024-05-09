@@ -41,10 +41,6 @@ public class Player {
 		return name;
 	}
 	
-	public void setPlayerName(String input) {
-		name = input;
-	}
-	
 	//get ID
 	public Integer getPlayerID() {
 		return playerID;
